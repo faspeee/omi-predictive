@@ -78,7 +78,7 @@ This project aims to calculate or predict the present or future value of the hou
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
+The official spec you can see in the next url [omi spec](https://www.overleaf.com/project/6630d751274b22b2c6499d1f)
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
