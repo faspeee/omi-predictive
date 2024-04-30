@@ -91,6 +91,8 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 ### Built With
 
 * [![CSharp][C#]][CSharp-url]
+* [![Kubernetes][Kubernetes]][Kubernetes-url]
+* [![Docker][Docker]][Docker-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
