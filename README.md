@@ -32,7 +32,7 @@
 <h3 align="center">omi-predictive</h3>
 
   <p align="center">
-    
+    If you want contribuite you can see the next [Jira](https://faspeeencina.atlassian.net/jira/software/projects/SCRUM/boards/1)
 This project aims to calculate or predict the present or future value of the house you want to sell or buy
     <br />
     <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
