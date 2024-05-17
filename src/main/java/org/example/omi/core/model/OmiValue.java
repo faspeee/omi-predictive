@@ -1,7 +1,11 @@
 package org.example.omi.core.model;
 
-import org.example.omi.core.fileoperation.FileObject;
+import lombok.Getter;
+import org.example.omi.core.fileoperation.contract.FileObject;
 
+import java.time.LocalDateTime;
+
+@Getter
 public final class OmiValue implements FileObject {
     private final String areaTerritoriale;
     private final String regione;
@@ -24,11 +28,12 @@ public final class OmiValue implements FileObject {
     private final String locMin;
     private final String locMax;
     private final String supNLLoc;
+    private final LocalDateTime localDateTime;
 
     private OmiValue(String areaTerritoriale, String regione, String prov, String comuneISTAT, String comuneCat, String sez,
                      String comuneAmm, String comuneDescrizione, String fascia, String zona, String linkZona, String codTip,
                      String descrTipologia, String stato, String statoPrev, String comprMin, String comprMax, String supNLCompr,
-                     String locMin, String locMax, String supNLLoc) {
+                     String locMin, String locMax, String supNLLoc, LocalDateTime localDate) {
         this.areaTerritoriale = areaTerritoriale;
         this.regione = regione;
         this.prov = prov;
@@ -50,90 +55,7 @@ public final class OmiValue implements FileObject {
         this.locMin = locMin;
         this.locMax = locMax;
         this.supNLLoc = supNLLoc;
-    }
-
-    public String getAreaTerritoriale() {
-        return areaTerritoriale;
-    }
-
-    public String getRegione() {
-        return regione;
-    }
-
-    public String getProv() {
-        return prov;
-    }
-
-    public String getComuneISTAT() {
-        return comuneISTAT;
-    }
-
-    public String getComuneCat() {
-        return comuneCat;
-    }
-
-    public String getSez() {
-        return sez;
-    }
-
-    public String getComuneAmm() {
-        return comuneAmm;
-    }
-
-    public String getComuneDescrizione() {
-        return comuneDescrizione;
-    }
-
-    public String getFascia() {
-        return fascia;
-    }
-
-    public String getZona() {
-        return zona;
-    }
-
-    public String getLinkZona() {
-        return linkZona;
-    }
-
-    public String getCodTip() {
-        return codTip;
-    }
-
-    public String getDescrTipologia() {
-        return descrTipologia;
-    }
-
-    public String getStato() {
-        return stato;
-    }
-
-    public String getStatoPrev() {
-        return statoPrev;
-    }
-
-    public String getComprMin() {
-        return comprMin;
-    }
-
-    public String getComprMax() {
-        return comprMax;
-    }
-
-    public String getSupNLCompr() {
-        return supNLCompr;
-    }
-
-    public String getLocMin() {
-        return locMin;
-    }
-
-    public String getLocMax() {
-        return locMax;
-    }
-
-    public String getSupNLLoc() {
-        return supNLLoc;
+        this.localDateTime = localDate;
     }
 
     @Override
@@ -185,6 +107,8 @@ public final class OmiValue implements FileObject {
         private String locMin;
         private String locMax;
         private String supNLLoc;
+
+        private LocalDateTime localDate;
 
         public ValueOmiBuilder comuneISTAT(String comuneISTAT) {
             this.comuneISTAT = comuneISTAT;
@@ -291,10 +215,15 @@ public final class OmiValue implements FileObject {
             return this;
         }
 
+        public ValueOmiBuilder localDate(LocalDateTime localDate) {
+            this.localDate = localDate;
+            return this;
+        }
+
         public OmiValue build() {
             return new OmiValue(areaTerritoriale, regione, prov, comuneISTAT, comuneCat, sez, comuneAmm, comuneDescrizione,
                     fascia, zona, linkZona, codTip, descrTipologia, stato, statoPrev, comprMin, comprMax, supNLCompr,
-                    locMin, locMax, supNLLoc);
+                    locMin, locMax, supNLLoc, localDate);
         }
     }
 

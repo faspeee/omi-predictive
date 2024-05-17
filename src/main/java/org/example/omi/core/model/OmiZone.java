@@ -1,8 +1,11 @@
 package org.example.omi.core.model;
 
-import org.example.omi.core.fileoperation.FileObject;
+import lombok.Getter;
+import org.example.omi.core.fileoperation.contract.FileObject;
 
+import java.time.LocalDateTime;
 
+@Getter
 public final class OmiZone implements FileObject {
     private final String areaTerritoriale;
     private final String regione;
@@ -19,11 +22,13 @@ public final class OmiZone implements FileObject {
     private final String codTipPrev;
     private final String descrTipPrev;
     private final String statoPrev;
+
     private final String microzona;
+    private final LocalDateTime localDateTime;
 
     public OmiZone(String areaTerritoriale, String regione, String prov, String comuneISTAT, String comuneCat, String sez,
                    String comuneAmm, String comuneDescrizione, String fascia, String zonaDescr, String zona, String linkZona,
-                   String codTipPrev, String descrTipPrev, String statoPrev, String microzona) {
+                   String codTipPrev, String descrTipPrev, String statoPrev, String microzona, LocalDateTime localDateTime) {
         this.areaTerritoriale = areaTerritoriale;
         this.regione = regione;
         this.prov = prov;
@@ -40,71 +45,9 @@ public final class OmiZone implements FileObject {
         this.descrTipPrev = descrTipPrev;
         this.statoPrev = statoPrev;
         this.microzona = microzona;
+        this.localDateTime = localDateTime;
     }
 
-    public String getAreaTerritoriale() {
-        return areaTerritoriale;
-    }
-
-    public String getRegione() {
-        return regione;
-    }
-
-    public String getProv() {
-        return prov;
-    }
-
-    public String getComuneISTAT() {
-        return comuneISTAT;
-    }
-
-    public String getComuneCat() {
-        return comuneCat;
-    }
-
-    public String getSez() {
-        return sez;
-    }
-
-    public String getComuneAmm() {
-        return comuneAmm;
-    }
-
-    public String getComuneDescrizione() {
-        return comuneDescrizione;
-    }
-
-    public String getFascia() {
-        return fascia;
-    }
-
-    public String getZonaDescr() {
-        return zonaDescr;
-    }
-
-    public String getZona() {
-        return zona;
-    }
-
-    public String getLinkZona() {
-        return linkZona;
-    }
-
-    public String getCodTipPrev() {
-        return codTipPrev;
-    }
-
-    public String getDescrTipPrev() {
-        return descrTipPrev;
-    }
-
-    public String getStatoPrev() {
-        return statoPrev;
-    }
-
-    public String getMicrozona() {
-        return microzona;
-    }
 
     @Override
     public String toString() {
@@ -145,6 +88,7 @@ public final class OmiZone implements FileObject {
         private String descrTipPrev;
         private String statoPrev;
         private String microzona;
+        private LocalDateTime localDate;
 
         public OmiZoneBuilder areaTerritoriale(String areaTerritoriale) {
             this.areaTerritoriale = areaTerritoriale;
@@ -226,10 +170,15 @@ public final class OmiZone implements FileObject {
             return this;
         }
 
+        public OmiZoneBuilder localDate(LocalDateTime localDate) {
+            this.localDate = localDate;
+            return this;
+        }
+
         public OmiZone build() {
             return new OmiZone(areaTerritoriale, regione, prov, comuneISTAT, comuneCat, sez,
                     comuneAmm, comuneDescrizione, fascia, zonaDescr, zona, linkZona,
-                    codTipPrev, descrTipPrev, statoPrev, microzona);
+                    codTipPrev, descrTipPrev, statoPrev, microzona, localDate);
         }
 
     }

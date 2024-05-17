@@ -4,6 +4,13 @@ public final class OperationUtil {
     private OperationUtil() {
     }
 
+    /**
+     * Retrieves an element from the given array safely. If the index is out of bounds, it returns an empty string.
+     *
+     * @param elements the array of elements.
+     * @param index    the index of the element to retrieve.
+     * @return the element at the specified index, or an empty string if the index is out of bounds.
+     */
     public static String getSafeMode(String[] elements, int index) {
         try {
             return elements[index];
