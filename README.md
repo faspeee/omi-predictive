@@ -32,7 +32,6 @@
 <h3 align="center">omi-predictive</h3>
 
   <p align="center">
-    
 This project aims to calculate or predict the present or future value of the house you want to sell or buy
     <br />
     <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
@@ -159,7 +158,7 @@ See the [open issues](https://github.com/github_username/repo_name/issues) for a
 
 <!-- CONTRIBUTING -->
 ## Contributing
-
+ If you want contribuite you can see the next [Jira](https://faspeeencina.atlassian.net/jira/software/projects/SCRUM/boards/1)
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
