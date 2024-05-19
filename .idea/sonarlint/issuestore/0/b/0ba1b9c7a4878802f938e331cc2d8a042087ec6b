@@ -1,9 +1,0 @@
-
-•
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 30 to the 15 allowed.(Çµí‘8÷÷Çµø1J$0efaa000-3d91-4d08-a98f-8c90e0c0c0ba
-r	java:S106 "+Replace this use of System.out by a logger.(ß–“¸ÿÿÿÿÿ8ü÷Çµø1J$1ca5c374-fdd7-4a16-acde-26c4566cc2a6
-r	java:S106/"+Replace this use of System.out by a logger.(à¤€‰üÿÿÿÿ8ı÷Çµø1J$22b43951-230f-40cb-8fc7-aec34713bcef
-r	java:S106="+Replace this use of System.out by a logger.(ö±Ä¡ÿÿÿÿÿ8ş÷Çµø1J$cc9ffaa0-6246-4860-a2ad-1e70dfe0b978
-m	java:S106K"+Replace this use of System.out by a logger.(Í®ù‘8ÿ÷Çµø1J$e472eb15-30f6-4e09-8ce0-39de5056e2c3
-m	java:S106_"+Replace this use of System.out by a logger.(ÉÊî€8€øÇµø1J$5e44cd71-a27a-401a-8409-c65af959b185
-r	java:S106h"+Replace this use of System.out by a logger.(½›£¼şÿÿÿÿ8øÇµø1J$8d62ccce-35a2-4e8b-928b-914e571315e2

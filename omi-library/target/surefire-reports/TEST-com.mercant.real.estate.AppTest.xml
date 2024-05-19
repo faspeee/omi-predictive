@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.mercant.real.estate.AppTest" time="0.019" tests="1" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="17"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Program1\project-fabian\omi-predictive\omi-library\target\test-classes;C:\Program1\project-fabian\omi-predictive\omi-library\target\classes;C:\Users\U479687\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;C:\Users\U479687\.m2\repository\org\projectlombok\lombok\1.18.22\lombok-1.18.22.jar;C:\Users\U479687\.m2\repository\com\fasterxml\jackson\dataformat\jackson-dataformat-csv\2.16.2\jackson-dataformat-csv-2.16.2.jar;C:\Users\U479687\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.16.2\jackson-databind-2.16.2.jar;C:\Users\U479687\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.16.2\jackson-annotations-2.16.2.jar;C:\Users\U479687\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.16.2\jackson-core-2.16.2.jar;"/>
+    <property name="java.vm.vendor" value="Eclipse Adoptium"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://adoptium.net/"/>
+    <property name="user.timezone" value="Europe/Rome"/>
+    <property name="user.country.format" value="US"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="java.vm.specification.version" value="17"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="IT"/>
+    <property name="sun.boot.library.path" value="C:\tools\java\jdk-17.0.1+12\bin"/>
+    <property name="sun.java.command" value="C:\Users\U479687\AppData\Local\Temp\1\surefire6652208163832600228\surefirebooter-20240519213334214_3.jar C:\Users\U479687\AppData\Local\Temp\1\surefire6652208163832600228 2024-05-19T21-33-32_821-jvmRun1 surefire-20240519213334214_1tmp surefire_0-20240519213334214_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="C:\Program1\project-fabian\omi-predictive\omi-library\target\test-classes;C:\Program1\project-fabian\omi-predictive\omi-library\target\classes;C:\Users\U479687\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;C:\Users\U479687\.m2\repository\org\projectlombok\lombok\1.18.22\lombok-1.18.22.jar;C:\Users\U479687\.m2\repository\com\fasterxml\jackson\dataformat\jackson-dataformat-csv\2.16.2\jackson-dataformat-csv-2.16.2.jar;C:\Users\U479687\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.16.2\jackson-databind-2.16.2.jar;C:\Users\U479687\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.16.2\jackson-annotations-2.16.2.jar;C:\Users\U479687\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.16.2\jackson-core-2.16.2.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\U479687"/>
+    <property name="user.language" value="it"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2021-10-19"/>
+    <property name="java.home" value="C:\tools\java\jdk-17.0.1+12"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Program1\project-fabian\omi-predictive\omi-library"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\U479687\AppData\Local\Temp\1\surefire6652208163832600228\surefirebooter-20240519213334214_3.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="17.0.1+12"/>
+    <property name="user.name" value="U479687"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Temurin-17.0.1+12"/>
+    <property name="localRepository" value="C:\Users\U479687\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
+    <property name="java.io.tmpdir" value="C:\Users\U479687\AppData\Local\Temp\1\"/>
+    <property name="idea.version" value="2023.3.6"/>
+    <property name="java.version" value="17.0.1"/>
+    <property name="user.dir" value="C:\Program1\project-fabian\omi-predictive\omi-library"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.language.format" value="en"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\tools\java\jdk-17.0.1+12\bin;C:\windows\Sun\Java\bin;C:\windows\system32;C:\windows;C:\windows\System32;C:\windows\System32;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\windows\System32\OpenSSH\;c:\Program Files\Zulu\zulu-8-jre\bin;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;;C:\Program Files (x86)\Intesa-SanPaolo\SpiVrsSdkWrapper;C:\Program Files (x86)\Enterprise Vault\EVClient\;C:\Program Files (x86)\DataLogics\APDFL10.1.0\DLE;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;;c:\Program Files (x86)\Intesa-Sanpaolo\SPI3270;C:\Program Files (x86)\Pulse Secure\VC142.CRT\X64\;C:\Program Files (x86)\Pulse Secure\VC142.CRT\X86\;C:\Program Files (x86)\Common Files\Pulse Secure\TNC Client Plugin\;c:\Program Files (x86)\Attachmate\Extra!\;C:\Users\U479687\AppData\Local\Microsoft\WindowsApps;C:\Users\U479687\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\U479687\AppData\Local\Programs\Git\cmd;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="Eclipse Adoptium"/>
+    <property name="java.vm.version" value="17.0.1+12"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="61.0"/>
+  </properties>
+  <testcase name="testApp" classname="com.mercant.real.estate.AppTest" time="0.003"/>
+</testsuite>

@@ -1,0 +1,16 @@
+com\mercant\real\estate\core\model\genericmodel\OmiValue.class
+com\mercant\real\estate\core\model\genericmodel\OmiZone.class
+com\mercant\real\estate\core\model\genericmodel\ValueAndZone.class
+com\mercant\real\estate\core\fileoperation\contract\FileObject.class
+com\mercant\real\estate\core\fileoperation\implementation\ReadFileValue.class
+com\mercant\real\estate\core\sinkoperation\SinkOperation.class
+com\mercant\real\estate\core\fileoperation\contract\ReadFile.class
+com\mercant\real\estate\core\util\OperationUtil.class
+com\mercant\real\estate\core\model\genericmodel\OmiZone$OmiZoneBuilder.class
+com\mercant\real\estate\core\sinkoperation\SinkOperationImpl.class
+com\mercant\real\estate\core\entity\OmiValueEntity.class
+com\mercant\real\estate\core\fileoperation\implementation\ReadFileZone.class
+com\mercant\real\estate\core\fileoperation\implementation\AbstractFile.class
+com\mercant\real\estate\core\model\genericmodel\OmiValue$ValueOmiBuilder.class
+com\mercant\real\estate\core\entity\OmiZoneEntity.class
+com\mercant\real\estate\core\util\CollectionUtil.class
