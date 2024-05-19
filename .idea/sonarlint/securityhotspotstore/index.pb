@@ -29,3 +29,6 @@ Womi-library/src/main/java/com/mercant/real/estate/core/model/genericmodel/OmiVa
 fomi-library/src/main/java/com/mercant/real/estate/core/fileoperation/implementation/ReadFileValue.java,7\9\793f4929319eba6cf250a5a756f097a077119365
 •
 eomi-library/src/main/java/com/mercant/real/estate/core/fileoperation/implementation/AbstractFile.java,4\f\4fdef824891f29ccf20f77bd92f4770ad39082e3
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
