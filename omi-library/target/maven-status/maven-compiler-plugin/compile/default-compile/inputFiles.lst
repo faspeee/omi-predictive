@@ -1,9 +1,13 @@
 C:\Program1\project-fabian\omi-predictive\omi-library\src\main\java\com\mercant\real\estate\core\fileoperation\implementation\ReadFileValue.java
+C:\Program1\project-fabian\omi-predictive\omi-library\src\main\java\com\mercant\real\estate\core\sinkoperation\reactive\SinkOperationReactiveImpl.java
 C:\Program1\project-fabian\omi-predictive\omi-library\src\main\java\com\mercant\real\estate\core\entity\OmiValueEntity.java
+C:\Program1\project-fabian\omi-predictive\omi-library\src\main\java\com\mercant\real\estate\core\fileoperation\reactive\implementation\ReadFileZone.java
 C:\Program1\project-fabian\omi-predictive\omi-library\src\main\java\com\mercant\real\estate\core\util\CollectionUtil.java
 C:\Program1\project-fabian\omi-predictive\omi-library\src\main\java\com\mercant\real\estate\core\sinkoperation\SinkOperationImpl.java
 C:\Program1\project-fabian\omi-predictive\omi-library\src\main\java\com\mercant\real\estate\core\fileoperation\contract\FileObject.java
 C:\Program1\project-fabian\omi-predictive\omi-library\src\main\java\com\mercant\real\estate\core\fileoperation\implementation\ReadFileZone.java
+C:\Program1\project-fabian\omi-predictive\omi-library\src\main\java\com\mercant\real\estate\core\fileoperation\reactive\implementation\ReadFileValue.java
+C:\Program1\project-fabian\omi-predictive\omi-library\src\main\java\com\mercant\real\estate\core\sinkoperation\reactive\SinkOperationReactive.java
 C:\Program1\project-fabian\omi-predictive\omi-library\src\main\java\com\mercant\real\estate\core\fileoperation\implementation\AbstractFile.java
 C:\Program1\project-fabian\omi-predictive\omi-library\src\main\java\com\mercant\real\estate\core\model\genericmodel\OmiZone.java
 C:\Program1\project-fabian\omi-predictive\omi-library\src\main\java\com\mercant\real\estate\core\util\OperationUtil.java
@@ -12,3 +16,5 @@ C:\Program1\project-fabian\omi-predictive\omi-library\src\main\java\com\mercant\
 C:\Program1\project-fabian\omi-predictive\omi-library\src\main\java\com\mercant\real\estate\core\fileoperation\contract\ReadFile.java
 C:\Program1\project-fabian\omi-predictive\omi-library\src\main\java\com\mercant\real\estate\core\entity\OmiZoneEntity.java
 C:\Program1\project-fabian\omi-predictive\omi-library\src\main\java\com\mercant\real\estate\core\model\genericmodel\OmiValue.java
+C:\Program1\project-fabian\omi-predictive\omi-library\src\main\java\com\mercant\real\estate\core\fileoperation\reactive\contract\ReadFileReactive.java
+C:\Program1\project-fabian\omi-predictive\omi-library\src\main\java\com\mercant\real\estate\core\fileoperation\reactive\implementation\AbstractFileReactive.java

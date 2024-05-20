@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.function.Predicate;
 
 public interface SinkOperation {
+
     /**
      * Processes all files and groups OmiZone and OmiValue objects based on the provided file paths.
      *
@@ -100,5 +101,4 @@ public interface SinkOperation {
     default Map<String, List<ValueAndZone>> processFilesWithConditionValueAndZone(String pathValue, String pathZone, Predicate<FileObject> valueCondition, Predicate<FileObject> condition) {
         return Map.of();
     }
-
 }

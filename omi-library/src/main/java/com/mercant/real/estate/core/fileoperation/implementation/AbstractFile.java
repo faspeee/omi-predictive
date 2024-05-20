@@ -11,6 +11,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 abstract class AbstractFile<T> {
+
     protected Optional<List<T>> readFile(String path, int skipLine) {
         try (BufferedReader bufferedReader = new BufferedReader(Files.newBufferedReader(Path.of(path), StandardCharsets.UTF_8))) {
             List<T> list = bufferedReader.lines()
