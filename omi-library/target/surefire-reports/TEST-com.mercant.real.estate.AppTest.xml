@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.mercant.real.estate.AppTest" time="0.037" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.mercant.real.estate.AppTest" time="0.045" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\tools\java\jdk-17.0.1+12\bin"/>
-    <property name="sun.java.command" value="C:\Users\U479687\AppData\Local\Temp\1\surefire7441795696372427116\surefirebooter-20240521145202817_3.jar C:\Users\U479687\AppData\Local\Temp\1\surefire7441795696372427116 2024-05-21T14-52-02_493-jvmRun1 surefire-20240521145202817_1tmp surefire_0-20240521145202817_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\U479687\AppData\Local\Temp\1\surefire12109246217220103742\surefirebooter-20240521224102880_3.jar C:\Users\U479687\AppData\Local\Temp\1\surefire12109246217220103742 2024-05-21T22-41-02_353-jvmRun1 surefire-20240521224102880_1tmp surefire_0-20240521224102880_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Program1\project-fabian\omi-predictive\omi-library\target\test-classes;C:\Program1\project-fabian\omi-predictive\omi-library\target\classes;C:\Users\U479687\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;C:\Users\U479687\.m2\repository\org\projectlombok\lombok\1.18.22\lombok-1.18.22.jar;C:\Users\U479687\.m2\repository\io\smallrye\reactive\mutiny\2.6.0\mutiny-2.6.0.jar;C:\Users\U479687\.m2\repository\io\smallrye\common\smallrye-common-annotation\2.3.0\smallrye-common-annotation-2.3.0.jar;C:\Users\U479687\.m2\repository\org\jctools\jctools-core\4.0.3\jctools-core-4.0.3.jar;C:\Users\U479687\.m2\repository\io\smallrye\reactive\smallrye-mutiny-vertx-core\3.12.0\smallrye-mutiny-vertx-core-3.12.0.jar;C:\Users\U479687\.m2\repository\io\smallrye\reactive\smallrye-mutiny-vertx-runtime\3.12.0\smallrye-mutiny-vertx-runtime-3.12.0.jar;C:\Users\U479687\.m2\repository\io\vertx\vertx-core\4.5.5\vertx-core-4.5.5.jar;C:\Users\U479687\.m2\repository\io\netty\netty-common\4.1.107.Final\netty-common-4.1.107.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-buffer\4.1.107.Final\netty-buffer-4.1.107.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-transport\4.1.107.Final\netty-transport-4.1.107.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-handler\4.1.107.Final\netty-handler-4.1.107.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-transport-native-unix-common\4.1.107.Final\netty-transport-native-unix-common-4.1.107.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-codec\4.1.107.Final\netty-codec-4.1.107.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-handler-proxy\4.1.107.Final\netty-handler-proxy-4.1.107.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-codec-socks\4.1.107.Final\netty-codec-socks-4.1.107.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-codec-http\4.1.107.Final\netty-codec-http-4.1.107.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-codec-http2\4.1.107.Final\netty-codec-http2-4.1.107.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-resolver\4.1.107.Final\netty-resolver-4.1.107.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-resolver-dns\4.1.107.Final\netty-resolver-dns-4.1.107.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-codec-dns\4.1.107.Final\netty-codec-dns-4.1.107.Final.jar;C:\Users\U479687\.m2\repository\io\smallrye\reactive\vertx-mutiny-generator\3.12.0\vertx-mutiny-generator-3.12.0.jar;C:\Users\U479687\.m2\repository\io\vertx\vertx-codegen\4.5.5\vertx-codegen-4.5.5.jar;C:\Users\U479687\.m2\repository\com\fasterxml\jackson\dataformat\jackson-dataformat-csv\2.16.2\jackson-dataformat-csv-2.16.2.jar;C:\Users\U479687\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.16.2\jackson-databind-2.16.2.jar;C:\Users\U479687\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.16.2\jackson-annotations-2.16.2.jar;C:\Users\U479687\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.16.2\jackson-core-2.16.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\U479687\AppData\Local\Temp\1\surefire7441795696372427116\surefirebooter-20240521145202817_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\U479687\AppData\Local\Temp\1\surefire12109246217220103742\surefirebooter-20240521224102880_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.1+12"/>
@@ -58,5 +58,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="testApp" classname="com.mercant.real.estate.AppTest" time="0.001"/>
+  <testcase name="testApp" classname="com.mercant.real.estate.AppTest" time="0.004"/>
 </testsuite>

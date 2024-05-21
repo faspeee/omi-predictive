@@ -180,21 +180,24 @@ public final class SinkOperationReactiveImpl extends CommonOperation implements 
 
 
     @Override
-    public Multi<Map<String, List<ValueAndZone>>> processFilesWithConditionZone(String pathValue, String pathZone, Predicate<FileObject> condition) {
+    public Multi<Map.Entry<String, List<ValueAndZone>>> processFilesWithConditionZone(String pathValue, String pathZone, Predicate<FileObject> condition) {
         Uni<Map<String, List<OmiValue>>> omiValuesMap = groupingValue(castMultiObject(readFileValue(pathValue), OmiValue.class::cast)).toUni();
+        return procesZonesAndGrouping(pathZone, condition, omiValuesMap);
+    }
+
+    private Multi<Map.Entry<String, List<ValueAndZone>>> procesZonesAndGrouping(String pathZone, Predicate<FileObject> condition, Uni<Map<String, List<OmiValue>>> omiValuesMap) {
         Uni<List<OmiZone>> omiZones = readZoneWithConditionSupport(pathZone, condition).collect().asList().map(SinkOperationReactiveImpl::removeOptional);
         return Uni.combine().all().unis(omiZones, omiValuesMap).asTuple()
                 .map(tuple -> groupingValueAndZone(tuple.getItem1(), tuple.getItem2()))
-                .toMulti();
+                .toMulti()
+                .flatMap(map -> Multi.createFrom().iterable(map.entrySet()));
     }
 
     @Override
-    public Multi<Map<String, List<ValueAndZone>>> processFilesWithConditionValueAndZone(String pathValue, String pathZone, Predicate<FileObject> valueCondition, Predicate<FileObject> condition) {
+    public Multi<Map.Entry<String, List<ValueAndZone>>> processFilesWithConditionValueAndZone(String pathValue, String pathZone, Predicate<FileObject> valueCondition, Predicate<FileObject> condition) {
         Uni<Map<String, List<OmiValue>>> omiValuesMap = groupingValue(readValueWithConditionSupport(pathValue, valueCondition)).toUni();
-        Uni<List<OmiZone>> omiZones = readZoneWithConditionSupport(pathZone, condition).collect().asList().map(SinkOperationReactiveImpl::removeOptional);
-        return Uni.combine().all().unis(omiZones, omiValuesMap).asTuple()
-                .map(tuple -> groupingValueAndZone(tuple.getItem1(), tuple.getItem2()))
-                .toMulti();
+        return procesZonesAndGrouping(pathZone, condition, omiValuesMap);
+
     }
 
 }

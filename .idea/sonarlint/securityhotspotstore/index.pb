@@ -66,3 +66,5 @@ Iomi-service/src/main/java/com/mercant/real/estate/ZoneOmiGrpcService.java,6\0\
 Vomi-library/src/main/java/com/mercant/real/estate/core/model/genericmodel/OmiZone.java,9\d\9d97c47e0a2113460d39f381a859c830e40d2879
 W
 'omi-service/src/main/proto/common.proto,e\2\e26f466da0fbb52a8140b525f308b87741224883
+w
+Gomi-service/src/main/java/com/mercant/real/estate/util/BuilderUtil.java,3\9\39cc0bd80db6852d7f9c5e43e4759b332cd39afa

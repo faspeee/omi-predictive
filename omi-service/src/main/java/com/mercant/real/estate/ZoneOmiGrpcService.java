@@ -7,15 +7,24 @@ import com.mercant.real.estate.core.sinkoperation.reactive.SinkOperationReactive
 import io.quarkus.grpc.GrpcService;
 import io.smallrye.mutiny.Multi;
 
+import java.util.Optional;
+import java.util.function.Function;
+
+import static com.mercant.real.estate.util.BuilderUtil.createOmiZone;
+import static com.mercant.real.estate.util.BuilderUtil.createOmiZoneFromValueAndZone;
+
 @GrpcService
 public class ZoneOmiGrpcService implements ZoneOmiGrpc {
+    private static final Function<Optional<OmiZone>, ResponseZoneOmi> getOrDefaultZoneOmi = omiZoneOptional ->
+            omiZoneOptional.map(omiZone -> ResponseZoneOmi.newBuilder().setOmiZone(createOmiZone.apply(omiZone)).build())
+                    .orElseGet(() -> ResponseZoneOmi.newBuilder().build());
     private final SinkOperationReactive sinkOperation = new SinkOperationReactiveImpl();
 
     @Override
     public Multi<ResponseZoneOmi> allZoneOmi(Empty request) {
         // Just returns a stream emitting an item every 2ms and stopping after 10 items.
         return sinkOperation.readAllZone("C:\\Program1\\project-fabian\\omi-predictive\\omi-library\\src\\main\\resources\\QI20051\\QI_1027287_1_20051_ZONE.csv")
-                .map(omiValue -> ResponseZoneOmi.newBuilder().setMessage(omiValue.toString()).build());
+                .map(getOrDefaultZoneOmi);
     }
 
     @Override
@@ -29,7 +38,7 @@ public class ZoneOmiGrpcService implements ZoneOmiGrpc {
                                 return false;
                             }
                         })
-                .map(omiValue -> ResponseZoneOmi.newBuilder().setMessage(omiValue.toString()).build());
+                .map(getOrDefaultZoneOmi);
     }
 
     @Override
@@ -43,6 +52,8 @@ public class ZoneOmiGrpcService implements ZoneOmiGrpc {
                                 return false;
                             }
                         })
-                .map(omiValue -> ResponseZoneOmi.newBuilder().setMessage(omiValue.toString()).build());
+                .flatMap(omiValue -> Multi.createFrom().items(omiValue.getValue().stream()
+                        .map(valueAndZone -> ResponseZoneOmi.newBuilder()
+                                .setOmiZone(createOmiZoneFromValueAndZone.apply(valueAndZone)).build())));
     }
 }

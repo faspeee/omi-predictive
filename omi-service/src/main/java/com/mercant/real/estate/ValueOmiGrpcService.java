@@ -7,15 +7,24 @@ import com.mercant.real.estate.core.sinkoperation.reactive.SinkOperationReactive
 import io.quarkus.grpc.GrpcService;
 import io.smallrye.mutiny.Multi;
 
+import java.util.Optional;
+import java.util.function.Function;
+
+import static com.mercant.real.estate.util.BuilderUtil.createOmiValue;
+import static com.mercant.real.estate.util.BuilderUtil.createOmiValueFromValueAndZone;
+
 @GrpcService
 public class ValueOmiGrpcService implements ValueOmiGrpc {
+    private static final Function<Optional<OmiValue>, ResponseValueOmi> getOrDefaultValueOmi = omiValueOptional ->
+            omiValueOptional.map(omiValue -> ResponseValueOmi.newBuilder().setOmiValue(createOmiValue.apply(omiValue)).build())
+                    .orElseGet(() -> ResponseValueOmi.newBuilder().build());
     private final SinkOperationReactive sinkOperation = new SinkOperationReactiveImpl();
 
     @Override
     public Multi<ResponseValueOmi> allValueOmi(Empty request) {
         // Just returns a stream emitting an item every 2ms and stopping after 10 items.
         return sinkOperation.readAllValue("C:\\Program1\\project-fabian\\omi-predictive\\omi-library\\src\\main\\resources\\QI20051\\QI_1027287_1_20051_VALORI.csv")
-                .map(omiValue -> ResponseValueOmi.newBuilder().setMessage(omiValue.toString()).build());
+                .map(getOrDefaultValueOmi);
     }
 
     @Override
@@ -29,7 +38,7 @@ public class ValueOmiGrpcService implements ValueOmiGrpc {
                                 return false;
                             }
                         })
-                .map(omiValue -> ResponseValueOmi.newBuilder().setMessage(omiValue.toString()).build());
+                .map(getOrDefaultValueOmi);
     }
 
     @Override
@@ -43,7 +52,9 @@ public class ValueOmiGrpcService implements ValueOmiGrpc {
                                 return false;
                             }
                         })
-                .map(omiValue -> ResponseValueOmi.newBuilder().setMessage(omiValue.toString()).build());
+                .flatMap(omiValue -> Multi.createFrom().items(omiValue.getValue().stream()
+                        .map(valueAndZone -> ResponseValueOmi.newBuilder()
+                                .setOmiValue(createOmiValueFromValueAndZone.apply(valueAndZone)).build())));
     }
 
 }

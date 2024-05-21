@@ -86,7 +86,7 @@ public interface SinkOperationReactive {
      * @param condition The condition to filter the OmiZone objects.
      * @return A map where the key is the zone link and the value is a list of ValueAndZone objects.
      */
-    default Multi<Map<String, List<ValueAndZone>>> processFilesWithConditionZone(String pathValue, String pathZone, Predicate<FileObject> condition) {
+    default Multi<Map.Entry<String, List<ValueAndZone>>> processFilesWithConditionZone(String pathValue, String pathZone, Predicate<FileObject> condition) {
         return Multi.createFrom().empty();
     }
 
@@ -99,7 +99,7 @@ public interface SinkOperationReactive {
      * @param condition      The condition to filter the OmiZone objects.
      * @return A map where the key is the zone link and the value is a list of ValueAndZone objects.
      */
-    default Multi<Map<String, List<ValueAndZone>>> processFilesWithConditionValueAndZone(String pathValue, String pathZone, Predicate<FileObject> valueCondition, Predicate<FileObject> condition) {
+    default Multi<Map.Entry<String, List<ValueAndZone>>> processFilesWithConditionValueAndZone(String pathValue, String pathZone, Predicate<FileObject> valueCondition, Predicate<FileObject> condition) {
         return Multi.createFrom().empty();
     }
 

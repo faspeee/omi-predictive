@@ -1,5 +1,6 @@
 syntax = "proto3";
 import "google/protobuf/empty.proto";
+import "common.proto";
 option java_multiple_files = true;
 option java_package = "com.mercant.real.estate";
 option java_outer_classname = "ValueOmiGrpcProto";
@@ -13,7 +14,7 @@ service ValueOmiGrpc {
 }
 
 message ResponseValueOmi {
-  string message = 1;
+  common.omiValueAndZone.OmiValue omiValue = 1;
 }
 message RequestValueWithCondition{
   string province = 1;
