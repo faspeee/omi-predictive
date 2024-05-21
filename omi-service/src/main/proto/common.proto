@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package common.omiValueAndZone;
+
+option java_multiple_files = true;
+option java_package = "com.mercant.real.estate";
+option java_outer_classname = "OmiValueProto";
+message OmiZone{
+  string areaTerritoriale = 1;
+  string regione = 2;
+  string prov = 3;
+  string comuneISTAT = 4;
+  string comuneCat = 5;
+  string sez = 6;
+  string comuneAmm = 7;
+  string comuneDescrizione = 8;
+  string fascia = 9;
+  string zonaDescr = 10;
+  string zona = 11;
+  string linkZona = 12;
+  string codTipPrev = 13;
+  string descrTipPrev = 14;
+  string statoPrev = 15;
+  string microzona = 16;
+  string localDateTime = 17;
+}
+
+
+message OmiValue{
+  string areaTerritoriale = 1;
+  string regione = 2;
+  string prov = 3;
+  string comuneISTAT = 4;
+  string comuneCat = 5;
+  string sez = 6;
+  string comuneAmm = 7;
+  string comuneDescrizione = 8;
+  string fascia = 9;
+  string zona = 10;
+  string linkZona = 11;
+  string codTip = 12;
+  string descrTipologia = 13;
+  string stato = 14;
+  string statoPrev = 15;
+  string comprMin = 16;
+  string comprMax = 17;
+  string supNLCompr = 18;
+  string locMin = 19;
+  string locMax = 20;
+  string supNLLoc = 21;
+  string localDateTime = 22;
+}

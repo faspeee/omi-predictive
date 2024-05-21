@@ -7,6 +7,7 @@ com\mercant\real\estate\core\util\OperationUtil.class
 com\mercant\real\estate\core\model\genericmodel\OmiZone$OmiZoneBuilder.class
 com\mercant\real\estate\core\fileoperation\implementation\ReadFileZone.class
 com\mercant\real\estate\core\model\genericmodel\OmiValue$ValueOmiBuilder.class
+com\mercant\real\estate\core\sinkoperation\util\CommonOperation.class
 com\mercant\real\estate\core\model\genericmodel\OmiZone.class
 com\mercant\real\estate\core\fileoperation\reactive\implementation\ReadFileValue.class
 com\mercant\real\estate\core\model\genericmodel\ValueAndZone.class

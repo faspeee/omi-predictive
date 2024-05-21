@@ -1,0 +1,17 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+import "common.proto";
+option java_multiple_files = true;
+option java_package = "com.mercant.real.estate";
+option java_outer_classname = "ZoneAndValueOmiGrpcProto";
+
+package zone.value.omi;
+
+service ZoneAndValueOmiGrpc {
+  rpc allValueAndZoneOmi (google.protobuf.Empty) returns (stream ResponseValueAndZoneOmi) {}
+}
+
+message ResponseValueAndZoneOmi {
+  common.omiValueAndZone.OmiZone omiZone = 1;
+  common.omiValueAndZone.OmiValue omiValue = 2;
+}

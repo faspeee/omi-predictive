@@ -10,30 +10,19 @@ import java.util.function.Predicate;
 
 abstract class AbstractFileReactive<T> {
     protected Multi<Optional<T>> readFile(String path, int skipLine) {
-        return Vertx.vertx().fileSystem().readFile(path)
-                .map(buffer -> Multi.createFrom()
-                        .emitter(multiEmitter -> Arrays.stream(buffer.toString().split("\n"))
-                                .parallel()
-                                .skip(skipLine)
-                                .forEach(multiEmitter::emit))).toMulti()
-                .flatMap(multi -> multi
-                        .map(line -> constructObject(String.valueOf(line)))
-                        .onFailure().call(() -> Uni.createFrom().item(Optional.empty())));
+        return Vertx.vertx().fileSystem().readFile(path).toMulti()
+                .flatMap(buffer -> Multi.createFrom().items(Arrays.stream(buffer.toString().split("\n")).skip(skipLine)))
+                .map(line -> constructObject(String.valueOf(line)))
+                .onFailure().call(() -> Uni.createFrom().item(Optional.empty()));
     }
 
 
     protected Multi<Optional<T>> readFile(String path, int skipLine, Predicate<T> condition) {
-        return Vertx.vertx().fileSystem().readFile(path)
-                .map(buffer -> Multi.createFrom()
-                        .emitter(multiEmitter -> Arrays.stream(buffer.toString().split("\n"))
-                                .parallel()
-                                .skip(skipLine)
-                                .map(this::constructObject)
-                                .filter(element -> element.isPresent() && condition.test(element.get()))
-                                .forEach(multiEmitter::emit))).toMulti()
-                .flatMap(multi -> multi
-                        .map(line -> constructObject(String.valueOf(line)))
-                        .onFailure().call(() -> Uni.createFrom().item(Optional.empty())));
+        return Vertx.vertx().fileSystem().readFile(path).toMulti()
+                .flatMap(buffer -> Multi.createFrom().items(Arrays.stream(buffer.toString().split("\n")).skip(skipLine)))
+                .map(line -> constructObject(String.valueOf(line)))
+                .filter(element -> element.isPresent() && condition.test(element.get()))
+                .onFailure().call(() -> Uni.createFrom().item(Optional.empty()));
     }
 
     protected abstract Optional<T> constructObject(String line);

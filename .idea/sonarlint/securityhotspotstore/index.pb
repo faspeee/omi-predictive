@@ -32,8 +32,6 @@ eomi-library/src/main/java/com/mercant/real/estate/core/fileoperation/implementa
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-ù
-momi-library/src/main/java/com/mercant/real/estate/core/fileoperation/implementation/AbstractFileReactive.java,2\8\282b6591c80492437591ad74f000a731cee21a2f
 ¶
 vomi-library/src/main/java/com/mercant/real/estate/core/fileoperation/reactive/implementation/AbstractFileReactive.java,7\5\753b2ad80e28d428a25cc4797fc359a02680e322
 ç
@@ -50,9 +48,21 @@ Oomi-library/src/main/java/com/mercant/real/estate/core/util/CollectionUtil.java
 Nomi-library/src/main/java/com/mercant/real/estate/core/util/OperationUtil.java,1\f\1f1324cc115176b3a79d1beed6c1f64695ae41aa
 ï
 eomi-library/src/main/java/com/mercant/real/estate/core/fileoperation/implementation/ReadFileZone.java,0\7\078a6e2302e01e6afbf84d6b5cb9c6896b374c00
-ê
-`omi-library/src/main/java/com/mercant/real/estate/core/sinkoperation/reactive/SinkOperation.java,0\8\0858bc9e534e06c2e1f13a37e19662533ed6a587
 ò
 homi-library/src/main/java/com/mercant/real/estate/core/sinkoperation/reactive/SinkOperationReactive.java,1\a\1abcd647f9ec99052532f3e1f39a42a94293cb12
-î
-domi-library/src/main/java/com/mercant/real/estate/core/sinkoperation/reactive/SinkOperationImpl.java,7\e\7e4f4bf1a062d16438715070d3ce4def24f21c22
+ú
+lomi-library/src/main/java/com/mercant/real/estate/core/sinkoperation/reactive/SinkOperationReactiveImpl.java,d\d\dd7c599a8c97941fffba0e6c9a14f5b534f1853d
+é
+^omi-library/src/main/java/com/mercant/real/estate/core/sinkoperation/util/CommonOperation.java,b\b\bb4e91f3a9d7ad38344a3995a4e3f4a42d8e66df
+X
+(omi-service/src/main/proto/zoneomi.proto,6\9\690561bde706c96ccfa73e514003c44998f7799e
+`
+0omi-service/src/main/proto/zoneandvalueomi.proto,2\4\24bbc04af8a99a739dba83e9c160ad1669ce9864
+Å
+Qomi-service/src/main/java/com/mercant/real/estate/ZoneAndValueOmiGrpcService.java,8\e\8e6f89eb870c31ece45c559481aa7d3aaf214d17
+y
+Iomi-service/src/main/java/com/mercant/real/estate/ZoneOmiGrpcService.java,6\0\60edefc68d1fe81cdfd266407d6bcafa49ea0af4
+Ü
+Vomi-library/src/main/java/com/mercant/real/estate/core/model/genericmodel/OmiZone.java,9\d\9d97c47e0a2113460d39f381a859c830e40d2879
+W
+'omi-service/src/main/proto/common.proto,e\2\e26f466da0fbb52a8140b525f308b87741224883

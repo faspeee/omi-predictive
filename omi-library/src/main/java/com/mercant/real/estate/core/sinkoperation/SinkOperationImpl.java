@@ -7,6 +7,7 @@ import com.mercant.real.estate.core.fileoperation.implementation.ReadFileZone;
 import com.mercant.real.estate.core.model.genericmodel.OmiValue;
 import com.mercant.real.estate.core.model.genericmodel.OmiZone;
 import com.mercant.real.estate.core.model.genericmodel.ValueAndZone;
+import com.mercant.real.estate.core.sinkoperation.util.CommonOperation;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -29,26 +30,12 @@ import static com.mercant.real.estate.core.util.CollectionUtil.castListObject;
  *     <li>Process files with optional conditions on the read objects.</li>
  * </ul>
  */
-public final class SinkOperationImpl implements SinkOperation {
+public final class SinkOperationImpl extends CommonOperation implements SinkOperation {
 
     // Instances of ReadFile for reading value and zone files.
     private final ReadFile readFileValue = new ReadFileValue();
     private final ReadFile readFileZone = new ReadFileZone();
 
-    /**
-     * Groups OmiZone and OmiValue objects based on the zone link.
-     *
-     * @param omiZones     List of OmiZone objects.
-     * @param omiValuesMap Map of OmiValue objects keyed by their zone link.
-     * @return A map where the key is the zone link and the value is a list of ValueAndZone objects.
-     */
-    private static Map<String, List<ValueAndZone>> groupingValueAndZone(List<OmiZone> omiZones, Map<String, List<OmiValue>> omiValuesMap) {
-        return omiZones.parallelStream()
-                .flatMap(omiZone -> omiValuesMap.getOrDefault(omiZone.getLinkZona(), new ArrayList<>()).stream()
-                        .map(omiValue -> new AbstractMap.SimpleImmutableEntry<>(omiZone.getLinkZona(), new ValueAndZone(omiZone, omiValue))))
-                .collect(Collectors.groupingByConcurrent(AbstractMap.SimpleImmutableEntry::getKey,
-                        Collectors.mapping(AbstractMap.SimpleImmutableEntry::getValue, Collectors.toList())));
-    }
 
     /**
      * Casts a list of FileObject to a list of OmiZone objects.

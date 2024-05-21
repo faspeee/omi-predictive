@@ -4,12 +4,19 @@ option java_multiple_files = true;
 option java_package = "com.mercant.real.estate";
 option java_outer_classname = "ValueOmiGrpcProto";
 
-package valueomi;
+package value.omi;
 
 service ValueOmiGrpc {
   rpc allValueOmi (google.protobuf.Empty) returns (stream ResponseValueOmi) {}
+  rpc allValueOmiWithCondition(RequestValueWithCondition) returns(stream ResponseValueOmi){}
+  rpc processFileWithConditionValue(RequestValueWithCondition) returns(stream ResponseValueOmi){}
 }
 
 message ResponseValueOmi {
   string message = 1;
+}
+message RequestValueWithCondition{
+  string province = 1;
+  string city = 2;
+  string region = 3;
 }

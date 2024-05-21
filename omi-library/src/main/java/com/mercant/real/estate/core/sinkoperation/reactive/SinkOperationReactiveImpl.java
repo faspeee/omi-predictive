@@ -7,12 +7,15 @@ import com.mercant.real.estate.core.fileoperation.reactive.implementation.ReadFi
 import com.mercant.real.estate.core.model.genericmodel.OmiValue;
 import com.mercant.real.estate.core.model.genericmodel.OmiZone;
 import com.mercant.real.estate.core.model.genericmodel.ValueAndZone;
+import com.mercant.real.estate.core.sinkoperation.util.CommonOperation;
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -31,26 +34,12 @@ import static com.mercant.real.estate.core.util.CollectionUtil.castMultiObject;
  *     <li>Process files with optional conditions on the read objects.</li>
  * </ul>
  */
-public final class SinkOperationReactiveImpl implements SinkOperationReactive {
+public final class SinkOperationReactiveImpl extends CommonOperation implements SinkOperationReactive {
 
     // Instances of ReadFile for reading value and zone files.
     private final ReadFileReactive readFileValue = new ReadFileValue();
     private final ReadFileReactive readFileZone = new ReadFileZone();
 
-    /**
-     * Groups OmiZone and OmiValue objects based on the zone link.
-     *
-     * @param omiZones     List of OmiZone objects.
-     * @param omiValuesMap Map of OmiValue objects keyed by their zone link.
-     * @return A map where the key is the zone link and the value is a list of ValueAndZone objects.
-     */
-    private static Map<String, List<ValueAndZone>> groupingValueAndZone(List<OmiZone> omiZones, Map<String, List<OmiValue>> omiValuesMap) {
-        return omiZones.parallelStream()
-                .flatMap(omiZone -> omiValuesMap.getOrDefault(omiZone.getLinkZona(), new ArrayList<>()).stream()
-                        .map(omiValue -> new AbstractMap.SimpleImmutableEntry<>(omiZone.getLinkZona(), new ValueAndZone(omiZone, omiValue))))
-                .collect(Collectors.groupingByConcurrent(AbstractMap.SimpleImmutableEntry::getKey,
-                        Collectors.mapping(AbstractMap.SimpleImmutableEntry::getValue, Collectors.toList())));
-    }
 
     /**
      * Casts a list of FileObject to a list of OmiZone objects.
@@ -74,7 +63,10 @@ public final class SinkOperationReactiveImpl implements SinkOperationReactive {
         return fileObjectList.collect()
                 .asMultiMap(omiValue -> omiValue.map(OmiValue::getLinkZona).orElse(""))
                 .map(map -> map.entrySet().stream()
-                        .collect(Collectors.toMap(Map.Entry::getKey, y -> y.getValue().stream().filter(Optional::isPresent).map(Optional::get).toList())))
+                        .collect(Collectors.toMap(Map.Entry::getKey, y -> y.getValue().stream()
+                                .filter(Optional::isPresent)
+                                .map(Optional::get)
+                                .toList())))
                 .toMulti();
     }
 
@@ -84,13 +76,13 @@ public final class SinkOperationReactiveImpl implements SinkOperationReactive {
      * @param supplier Supplier that provides the grouping result.
      * @return A map where the key is the zone link and the value is a list of ValueAndZone objects.
      */
-    private static Map<String, List<ValueAndZone>> groupingValueAndZone(Supplier<Map<String, List<ValueAndZone>>> supplier) {
+    private static Multi<Map.Entry<String, List<ValueAndZone>>> groupingValueAndZone(Supplier<Map<String, List<ValueAndZone>>> supplier) {
         long initTimeTest = System.currentTimeMillis();
         Map<String, List<ValueAndZone>> valueAndZoneTest = supplier.get();
         long endTimeTest = System.currentTimeMillis();
         NumberFormat formatter = new DecimalFormat("#0.00000");
-        System.out.println("Execution time is " + formatter.format((endTimeTest - initTimeTest) / 1000d) + " seconds" + "dimension map is " + valueAndZoneTest.values().stream().mapToLong(Collection::size).sum());
-        return valueAndZoneTest;
+        System.out.println("Execution time is " + formatter.format((endTimeTest - initTimeTest) / 1000d) + " seconds" + "dimension map is " + valueAndZoneTest.values().stream().mapToLong(List::size).sum());
+        return Multi.createFrom().iterable(valueAndZoneTest.entrySet());
     }
 
     private static List<OmiZone> removeOptional(List<Optional<OmiZone>> optionalList) {
@@ -118,9 +110,16 @@ public final class SinkOperationReactiveImpl implements SinkOperationReactive {
     }
 
     @Override
-    public Multi<Map<String, List<ValueAndZone>>> processAllFiles(String pathValue, String pathZone) {
+    public Multi<Map.Entry<String, List<ValueAndZone>>> processAllFiles(String pathValue, String pathZone) {
         System.out.println("read the next files " + pathValue + " + " + pathZone);
         return groupingValue(castMultiObject(readFileValue(pathValue), OmiValue.class::cast))
+                .flatMap(omiValuesMap -> groupingValueAndZone(pathZone, omiValuesMap));
+    }
+
+    @Override
+    public Multi<Map.Entry<String, List<ValueAndZone>>> processFilesWithConditionValue(String pathValue, String pathZone, Predicate<FileObject> condition) {
+        System.out.println("read the next files " + pathValue + " + " + pathZone);
+        return groupingValue(readValueWithConditionSupport(pathValue, condition))
                 .flatMap(omiValuesMap -> groupingValueAndZone(pathZone, omiValuesMap));
     }
 
@@ -131,9 +130,10 @@ public final class SinkOperationReactiveImpl implements SinkOperationReactive {
      * @param omiValuesMap Map of OmiValue objects keyed by their zone link.
      * @return A map where the key is the zone link and the value is a list of ValueAndZone objects.
      */
-    private Multi<Map<String, List<ValueAndZone>>> groupingValueAndZone(String pathZone, Map<String, List<OmiValue>> omiValuesMap) {
+    private Multi<Map.Entry<String, List<ValueAndZone>>> groupingValueAndZone(String pathZone, Map<String, List<OmiValue>> omiValuesMap) {
         return castFileObjectToOmiZone(readFileZone(pathZone).filter(Optional::isPresent).map(Optional::get)).collect().asList()
-                .map(omiZones -> groupingValueAndZone(() -> groupingValueAndZone(omiZones, omiValuesMap))).toMulti();
+                .map(omiZones -> groupingValueAndZone(() -> groupingValueAndZone(omiZones, omiValuesMap)))
+                .toMulti().flatMap(multi -> multi);
     }
 
     @Override
@@ -178,12 +178,6 @@ public final class SinkOperationReactiveImpl implements SinkOperationReactive {
         return castMultiObject(readFileZone.readFile(pathZone, condition), OmiZone.class::cast);
     }
 
-    @Override
-    public Multi<Map<String, List<ValueAndZone>>> processFilesWithConditionValue(String pathValue, String pathZone, Predicate<FileObject> condition) {
-        System.out.println("read the next files " + pathValue + " + " + pathZone);
-        return groupingValue(readValueWithConditionSupport(pathValue, condition))
-                .flatMap(omiValuesMap -> groupingValueAndZone(pathZone, omiValuesMap));
-    }
 
     @Override
     public Multi<Map<String, List<ValueAndZone>>> processFilesWithConditionZone(String pathValue, String pathZone, Predicate<FileObject> condition) {
