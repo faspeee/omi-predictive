@@ -68,3 +68,5 @@ W
 'omi-service/src/main/proto/common.proto,e\2\e26f466da0fbb52a8140b525f308b87741224883
 w
 Gomi-service/src/main/java/com/mercant/real/estate/util/BuilderUtil.java,3\9\39cc0bd80db6852d7f9c5e43e4759b332cd39afa
+k
+;omi-service/src/main/java/com/mercant/real/estate/Pipo.java,1\5\15ac71056cd1f8f5f01953e04626176467712d19
