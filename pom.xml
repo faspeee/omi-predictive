@@ -11,6 +11,8 @@
     <modules>
         <module>omi-library</module>
         <module>omi-service</module>
+        <module>omi-load-file</module>
+        <module>omi-municipality</module>
     </modules>
 
     <properties>

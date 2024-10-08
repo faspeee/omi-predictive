@@ -5,7 +5,9 @@ import com.mercant.real.estate.core.fileoperation.contract.ReadFile;
 import com.mercant.real.estate.core.model.genericmodel.OmiZone;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 import static com.mercant.real.estate.core.util.OperationUtil.createZoneFromLine;
@@ -53,6 +55,11 @@ public final class ReadFileZone extends AbstractFile<FileObject> implements Read
     @Override
     public Optional<List<FileObject>> readFile(String pathValue, Predicate<FileObject> condition) {
         return readFile(pathValue, 1, condition);
+    }
+
+    @Override
+    public <K> Optional<Map<K, List<FileObject>>> readFile(String path, Predicate<Map.Entry<K, FileObject>> condition, Function<FileObject, K> function) {
+        return readFile(path, 1, condition, function);
     }
 
     /**

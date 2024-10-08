@@ -7,10 +7,13 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/omi-services/pom.xml" />
         <option value="$PROJECT_DIR$/omi-service/pom.xml" />
+        <option value="$PROJECT_DIR$/omi-municipality/pom.xml" />
+        <option value="$PROJECT_DIR$/demo/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/demo/pom.xml" />
         <option value="$PROJECT_DIR$/omi-services/pom.xml" />
       </set>
     </option>

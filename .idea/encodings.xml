@@ -3,6 +3,11 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/omi-library/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/omi-library/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/omi-load-file/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/omi-load-file/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/omi-load-file/src/main/scala" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/omi-municipality/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/omi-municipality/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/omi-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/omi-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/omi-services/src/main/java" charset="UTF-8" />
