@@ -13,6 +13,7 @@
         <module>omi-service</module>
         <module>omi-load-file</module>
         <module>omi-municipality</module>
+        <module>omi-statistics</module>
     </modules>
 
     <properties>

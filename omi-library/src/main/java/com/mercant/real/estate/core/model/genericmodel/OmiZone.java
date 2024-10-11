@@ -26,9 +26,9 @@ public final class OmiZone implements FileObject {
     private final String microzona;
     private final LocalDateTime localDateTime;
 
-    public OmiZone(String areaTerritoriale, String regione, String prov, String comuneISTAT, String comuneCat, String sez,
-                   String comuneAmm, String comuneDescrizione, String fascia, String zonaDescr, String zona, String linkZona,
-                   String codTipPrev, String descrTipPrev, String statoPrev, String microzona, LocalDateTime localDateTime) {
+    private OmiZone(String areaTerritoriale, String regione, String prov, String comuneISTAT, String comuneCat, String sez,
+                    String comuneAmm, String comuneDescrizione, String fascia, String zonaDescr, String zona, String linkZona,
+                    String codTipPrev, String descrTipPrev, String statoPrev, String microzona, LocalDateTime localDateTime) {
         this.areaTerritoriale = areaTerritoriale;
         this.regione = regione;
         this.prov = prov;
