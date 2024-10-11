@@ -77,15 +77,19 @@ This project aims to calculate or predict the present or future value of the hou
 
 The official spec you can see in the next url [omi spec](https://www.overleaf.com/project/6630d751274b22b2c6499d1f)
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+This repository contains different project, every project contains on own readme that explain the aims of the project,
+another think that you find in the specific README is the mode as run every project. Why more project with more
+technologies?, because the construct with different technologies allow us the understanding when use a technologies
+rather other, for example. In this project us use the grpc technology, this technology you can implement on different
+programing language but this, not does mean that is easy implement the same feature in java rather python or vice versa.
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor
-for the
-following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
-
+Every project also contains on own docker and library manager, in this mode the specific feature needed to construct a
+docker file for a specific project is separated and allow more elasticity for the future.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
+
+In this section you can find the all technologies that are used inside this project.
 
 * [![CSharp][C#]][csharp-url]
 * [![Kubernetes][Kubernetes]][kubernetes-url]
@@ -118,7 +122,7 @@ This is an example of how to list things you need to use the software and how to
 2. Clone the repo
    ```sh
    git clone https://github.com/github_username/repo_name.git
-   ```
+   ``` 
 3. Install NPM packages
    ```sh
    npm install
