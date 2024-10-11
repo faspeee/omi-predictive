@@ -95,6 +95,7 @@ In this section you can find the all technologies that are used inside this proj
 * [![Kubernetes][Kubernetes]][kubernetes-url]
 * [![Docker][Docker]][docker-url]
 * [![Java][Java]][java-url]
+* [![Quarkus][Quarkus]][quarkus-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -253,6 +254,10 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [Java]: https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white
 
 [java-url]: https://www.java.com/es/
+
+[Quarkus]: https://img.shields.io/badge/Quarkus-4695EB?logo=quarkus&logoColor=fff&style=flat-square
+
+[quarkus-url]: https://es.quarkus.io/
 
 [Docker]: https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white
 
