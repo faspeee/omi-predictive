@@ -1,15 +1,17 @@
 package com.mercant.real.estate.municipality.repository;
 
 import com.mercant.real.estate.municipality.entity.OldMunicipality;
-import io.quarkus.hibernate.reactive.panache.PanacheRepository;
 import io.smallrye.mutiny.Uni;
-import jakarta.enterprise.context.ApplicationScoped;
+import org.hibernate.reactive.mutiny.Mutiny;
 
 import java.util.List;
 
-@ApplicationScoped
-public class OldMunicipalityRepository implements PanacheRepository<OldMunicipality> {
-    public Uni<List<OldMunicipality>> findAllMulti() {
-        return listAll();
+public record OldMunicipalityRepository(Mutiny.SessionFactory emf) {
+
+    public Uni<List<OldMunicipality>> findAll() {
+        return emf.withSession(session -> session
+                .createQuery("FROM OldMunicipality", OldMunicipality.class)
+                .getResultList());
     }
+
 }
