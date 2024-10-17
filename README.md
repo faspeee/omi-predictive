@@ -96,6 +96,7 @@ In this section you can find the all technologies that are used inside this proj
 * [![Docker][Docker]][docker-url]
 * [![Java][Java]][java-url]
 * [![Quarkus][Quarkus]][quarkus-url]
+* [![Apache Pekko][Pekko]][pekko-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -105,21 +106,26 @@ In this section you can find the all technologies that are used inside this proj
 
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+You must have the docker on your computer and kubernetes to run the full program. This project is possible running only
+on docker but the full capacity is not visible.
+
+The next section will help you to running this project.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+The main technologies that need to be installed on the computer are:
+
+- Docker
+- Kubernetes
 
 ### Installation
 
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/faspeee/omi-predictive.git
    ``` 
-3. Install NPM packages
+3. run the next command
    ```sh
    npm install
    ``` 
@@ -162,7 +168,7 @@ known issues).
 ## Contributing
 
 If you want contribuite you can see the
-next [Jira](https://faspeeencina.atlassian.net/jira/software/projects/SCRUM/boards/1)
+next [Jira](https://faspeeencina-1.atlassian.net/jira/software/projects/MBA/boards/1/timeline)
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any
 contributions you make are **greatly appreciated**.
 
@@ -171,9 +177,9 @@ simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
 
 1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
+2. Create your Feature Branch (`git checkout -b feature/<number-of-jira>-<name-feature>`)
+3. Commit your Changes (`git commit -m '<number-of-jira> your commit msg'`)
+4. Push to the Branch (`git push origin feature/<number-of-jira>-<name-feature>`)
 5. Open a Pull Request
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -259,18 +265,10 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 
 [quarkus-url]: https://es.quarkus.io/
 
+[Pekko]: https://img.shields.io/badge/Apache-D22128?style=for-the-badge&logo=Apache&logoColor=white
+
+[pekko-url]: https://pekko.apache.org/docs/pekko/current/index.html
+
 [Docker]: https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white
 
 [docker-url]: https://www.docker.com/
-
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-
-[Angular-url]: https://angular.io/
-
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-
-[Bootstrap-url]: https://getbootstrap.com
-
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-
-[JQuery-url]: https://jquery.com 
