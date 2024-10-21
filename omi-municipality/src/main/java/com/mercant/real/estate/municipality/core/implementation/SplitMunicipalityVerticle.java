@@ -3,53 +3,66 @@ package com.mercant.real.estate.municipality.core.implementation;
 import com.mercant.real.estate.municipality.configuration.EventBusVerticle;
 import com.mercant.real.estate.municipality.configuration.WebClientVerticle;
 import com.mercant.real.estate.municipality.core.contract.MunicipalityCore;
-
-import static com.mercant.real.estate.municipality.utils.Constant.MUNICIPALITY_CHANNEL;
+import com.mercant.real.estate.municipality.utils.Logger;
 
 /**
- * The {@code SplitMunicipalityVerticle} class extends the {@code Common} class
- * and implements the {@code MunicipalityCore} interface. This verticle is designed
- * to handle tasks related to splitting municipality data and interacting with
- * external services via HTTP requests.
+ * SplitMunicipalityVerticle is responsible for initiating the splitting
+ * of municipality-related processes by publishing messages to the EventBus.
  *
- * <p>
- * It initializes a WebClient during its asynchronous startup phase, allowing
- * for efficient communication with external APIs or services.
- * </p>
+ * <p>This verticle interacts with the {@link EventBusVerticle} for sending
+ * messages that trigger processing tasks in other components of the application.
+ * It serves as a command issuer, signaling the start of municipality-related operations.</p>
  *
- * <p>
- * This class also serves to publish messages to the Event Bus, triggering
- * further processing of municipality data.
- * </p>
+ * <p>Utilizing the WebClient, it can also extend functionality to make HTTP
+ * requests to external services if needed in the future.</p>
  *
- * @see MunicipalityCore
- * @see io.vertx.mutiny.core.eventbus.EventBus
- * @see io.vertx.mutiny.ext.web.client.WebClient
+ * @author Your Name
+ * @version 1.0
+ * @since 2024-10-21
  */
 public final class SplitMunicipalityVerticle implements MunicipalityCore {
 
+    private static final String MUNICIPALITY_CHANNEL = "municipality.channel"; // Channel name for event bus messages
+
+    /**
+     * The EventBusVerticle instance used for publishing messages to the EventBus.
+     */
     private final EventBusVerticle eventBusVerticle;
+
+    /**
+     * The WebClientVerticle instance used for making HTTP requests to external services.
+     * This may be used in future enhancements for integrating external APIs.
+     */
     private final WebClientVerticle webClientVerticle;
 
+    /**
+     * Constructs a SplitMunicipalityVerticle with the specified dependencies.
+     *
+     * @param eventBusVerticle  the EventBusVerticle instance for message publication.
+     * @param webClientVerticle the WebClientVerticle instance for potential HTTP requests.
+     */
     public SplitMunicipalityVerticle(EventBusVerticle eventBusVerticle, WebClientVerticle webClientVerticle) {
         this.eventBusVerticle = eventBusVerticle;
         this.webClientVerticle = webClientVerticle;
     }
 
     /**
-     * Processes municipality tasks by publishing a "start" message to the
-     * Event Bus on the {@code MUNICIPALITY_CHANNEL}. This action triggers
-     * any consumers that are listening for municipality-related events.
+     * Initiates the process of splitting municipalities by publishing a message
+     * to the EventBus.
      *
-     * <p>
-     * The "start" message signals the beginning of a process, allowing
-     * other components to respond accordingly.
-     * </p>
+     * <p>This method publishes a "start" message to the MUNICIPALITY_CHANNEL,
+     * signaling other components to begin their processing tasks related to
+     * municipalities. This acts as a command to trigger further actions.</p>
      *
-     * @see io.vertx.mutiny.core.eventbus.Message
+     * <p>Example usage:
+     * <pre>
+     *     splitMunicipalityVerticle.processMunicipality();
+     * </pre>
+     * This method should be called when the splitting process needs to be initiated.</p>
      */
     @Override
     public void processMunicipality() {
+        Logger.info("Publishing start message to the municipality channel.");
         eventBusVerticle.getEventBus().publish(MUNICIPALITY_CHANNEL, "start");
     }
 }
