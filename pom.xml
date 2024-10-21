@@ -14,6 +14,7 @@
         <module>omi-load-file</module>
         <module>omi-municipality</module>
         <module>omi-statistics</module>
+        <module>omi-liquibase</module>
     </modules>
 
     <properties>
