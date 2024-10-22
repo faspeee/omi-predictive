@@ -41,7 +41,7 @@ public final class WebClientVerticle extends AbstractVerticle {
         Uni<Void> startWebClient = Uni.createFrom().deferred(() -> {
             WebClientOptions options = new WebClientOptions()
                     .setUserAgent("My-App/1.2.3")
-                    .setKeepAlive(false);
+                    .setKeepAlive(true);
             webClient = WebClient.create(vertx, options);
             return Uni.createFrom().voidItem();
         });

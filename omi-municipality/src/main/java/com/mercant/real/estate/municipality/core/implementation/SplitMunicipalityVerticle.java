@@ -1,9 +1,9 @@
 package com.mercant.real.estate.municipality.core.implementation;
 
 import com.mercant.real.estate.municipality.configuration.EventBusVerticle;
-import com.mercant.real.estate.municipality.configuration.WebClientVerticle;
 import com.mercant.real.estate.municipality.core.contract.MunicipalityCore;
 import com.mercant.real.estate.municipality.utils.Logger;
+import com.mercant.real.estate.municipality.webinformation.MunicipalityInformation;
 
 /**
  * SplitMunicipalityVerticle is responsible for initiating the splitting
@@ -29,21 +29,16 @@ public final class SplitMunicipalityVerticle implements MunicipalityCore {
      */
     private final EventBusVerticle eventBusVerticle;
 
-    /**
-     * The WebClientVerticle instance used for making HTTP requests to external services.
-     * This may be used in future enhancements for integrating external APIs.
-     */
-    private final WebClientVerticle webClientVerticle;
+    private final MunicipalityInformation municipalityInformation;
 
     /**
      * Constructs a SplitMunicipalityVerticle with the specified dependencies.
      *
-     * @param eventBusVerticle  the EventBusVerticle instance for message publication.
-     * @param webClientVerticle the WebClientVerticle instance for potential HTTP requests.
+     * @param eventBusVerticle the EventBusVerticle instance for message publication.
      */
-    public SplitMunicipalityVerticle(EventBusVerticle eventBusVerticle, WebClientVerticle webClientVerticle) {
+    public SplitMunicipalityVerticle(EventBusVerticle eventBusVerticle, MunicipalityInformation municipalityInformation) {
         this.eventBusVerticle = eventBusVerticle;
-        this.webClientVerticle = webClientVerticle;
+        this.municipalityInformation = municipalityInformation;
     }
 
     /**
@@ -63,6 +58,7 @@ public final class SplitMunicipalityVerticle implements MunicipalityCore {
     @Override
     public void processMunicipality() {
         Logger.info("Publishing start message to the municipality channel.");
+        municipalityInformation.readCurrentMunicipalities().await().indefinitely();
         eventBusVerticle.getEventBus().publish(MUNICIPALITY_CHANNEL, "start");
     }
 }
