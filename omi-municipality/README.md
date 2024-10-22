@@ -37,9 +37,9 @@ url [suppressed municipalities](https://www.istat.it/wp-content/uploads/2024/09/
 
 # Other information
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+This project uses Vertx, Reactive applications on the JVM.
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+If you want to learn more about Vertx, please visit its website: <https://vertx.io/>.
 
 ## Running the application in dev mode
 
