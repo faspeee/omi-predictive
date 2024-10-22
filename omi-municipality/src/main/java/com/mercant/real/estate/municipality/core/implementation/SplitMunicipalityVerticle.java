@@ -58,7 +58,9 @@ public final class SplitMunicipalityVerticle implements MunicipalityCore {
     @Override
     public void processMunicipality() {
         Logger.info("Publishing start message to the municipality channel.");
-        municipalityInformation.readCurrentMunicipalities().await().indefinitely();
+        municipalityInformation.readCurrentMunicipalities()
+                .subscribe()
+                .with(municipalityModels -> municipalityModels.forEach(x -> Logger.info(x.toString())));
         eventBusVerticle.getEventBus().publish(MUNICIPALITY_CHANNEL, "start");
     }
 }
