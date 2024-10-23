@@ -92,7 +92,7 @@ public final class MunicipalityInformation {
         return MunicipalityModel.builder()
                 .regionCode(row.getCell(0).getStringCellValue())
                 .provinceCode(row.getCell(2).getStringCellValue())
-                .municipalityCode(row.getCell(15).getStringCellValue())
+                .municipalityCode(String.valueOf(row.getCell(15).getNumericCellValue()))
                 .municipalitySigle(row.getCell(3).getStringCellValue()) //TODO: Fixed index for municipalitySigle, Update: search the municipality code
                 .municipalityName(row.getCell(6).getStringCellValue())
                 .regionName(row.getCell(10).getStringCellValue())

@@ -9,6 +9,7 @@ public final class Logger {
     }
 
     public static void info(String message) {
+        System.out.println(message);
         logger.info(message);
     }
 }

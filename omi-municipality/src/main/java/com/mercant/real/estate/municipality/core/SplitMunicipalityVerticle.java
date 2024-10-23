@@ -60,7 +60,9 @@ public final class SplitMunicipalityVerticle implements MunicipalityCore {
         Logger.info("Publishing start message to the municipality channel.");
         municipalityInformation.readCurrentMunicipalities()
                 .subscribe()
-                .with(municipalityModels -> municipalityModels.forEach(x -> Logger.info(x.toString())));
-        eventBusVerticle.getEventBus().publish(MUNICIPALITY_CHANNEL, "start");
+                .with(municipalityModels -> municipalityModels
+                        .forEach(municipalityModel -> eventBusVerticle.getEventBus()
+                                .publish(MUNICIPALITY_CHANNEL, municipalityModel.toString())));
+
     }
 }
