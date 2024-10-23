@@ -1,11 +1,12 @@
-package com.mercant.real.estate.municipality.core.implementation;
+package com.mercant.real.estate.municipality.core;
 
 import com.mercant.real.estate.municipality.configuration.EventBusVerticle;
 import com.mercant.real.estate.municipality.configuration.WebClientVerticle;
-import com.mercant.real.estate.municipality.core.contract.MunicipalityCore;
 import com.mercant.real.estate.municipality.repository.MunicipalityRepository;
 import com.mercant.real.estate.municipality.repository.OldMunicipalityRepository;
 import com.mercant.real.estate.municipality.utils.Logger;
+
+import static com.mercant.real.estate.municipality.utils.Constant.MUNICIPALITY_CHANNEL;
 
 /**
  * MunicipalityProcessVerticle is responsible for processing municipality-related
@@ -26,8 +27,6 @@ import com.mercant.real.estate.municipality.utils.Logger;
  */
 public final class MunicipalityProcessVerticle implements MunicipalityCore {
 
-    private static final String MUNICIPALITY_CHANNEL = "municipality.channel"; // Channel name for event bus messages
-    
     /**
      * The EventBusVerticle instance used for receiving messages from the EventBus.
      */

@@ -1,9 +1,10 @@
-package com.mercant.real.estate.municipality.core.implementation;
+package com.mercant.real.estate.municipality.core;
 
 import com.mercant.real.estate.municipality.configuration.EventBusVerticle;
-import com.mercant.real.estate.municipality.core.contract.MunicipalityCore;
 import com.mercant.real.estate.municipality.utils.Logger;
 import com.mercant.real.estate.municipality.webinformation.MunicipalityInformation;
+
+import static com.mercant.real.estate.municipality.utils.Constant.MUNICIPALITY_CHANNEL;
 
 /**
  * SplitMunicipalityVerticle is responsible for initiating the splitting
@@ -22,7 +23,6 @@ import com.mercant.real.estate.municipality.webinformation.MunicipalityInformati
  */
 public final class SplitMunicipalityVerticle implements MunicipalityCore {
 
-    private static final String MUNICIPALITY_CHANNEL = "municipality.channel"; // Channel name for event bus messages
 
     /**
      * The EventBusVerticle instance used for publishing messages to the EventBus.

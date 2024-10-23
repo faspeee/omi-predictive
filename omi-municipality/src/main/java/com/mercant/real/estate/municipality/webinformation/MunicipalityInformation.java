@@ -91,13 +91,13 @@ public final class MunicipalityInformation {
     private static MunicipalityModel createMunicipalityModel(Row row) {
         return MunicipalityModel.builder()
                 .regionCode(row.getCell(0).getStringCellValue())
-                .provinceCode(row.getCell(1).getStringCellValue())
-                .municipalityCode(row.getCell(2).getStringCellValue()) // Fixed index for municipalityCode
-                .municipalitySigle(row.getCell(3).getStringCellValue()) // Fixed index for municipalitySigle
+                .provinceCode(row.getCell(2).getStringCellValue())
+                .municipalityCode(row.getCell(15).getStringCellValue())
+                .municipalitySigle(row.getCell(3).getStringCellValue()) //TODO: Fixed index for municipalitySigle, Update: search the municipality code
                 .municipalityName(row.getCell(6).getStringCellValue())
-                .regionName(row.getCell(4).getStringCellValue()) // Fixed index for regionName
-                .cadastralCode(row.getCell(5).getStringCellValue()) // Fixed index for cadastralCode
-                .territorialUnitType(row.getCell(7).getStringCellValue()) // Fixed index for territorialUnitType
+                .regionName(row.getCell(10).getStringCellValue())
+                .cadastralCode(row.getCell(19).getStringCellValue())
+                .territorialUnitType(row.getCell(1).getStringCellValue())
                 .capitalsMunicipality(row.getCell(11).getStringCellValue())
                 .build();
     }
@@ -113,7 +113,11 @@ public final class MunicipalityInformation {
      */
     private static OldMunicipalityModel createOldMunicipalityModel(Row row) {
         return OldMunicipalityModel.builder()
-                .build(); // Implement the actual population logic as needed
+                .year(Integer.parseInt(row.getCell(0).getStringCellValue()))
+                .municipalityCode(row.getCell(3).getStringCellValue())
+                .municipalityName(row.getCell(4).getStringCellValue())
+                .newMunicipalityCode(Integer.parseInt(row.getCell(7).getStringCellValue()))
+                .build();
     }
 
     /**

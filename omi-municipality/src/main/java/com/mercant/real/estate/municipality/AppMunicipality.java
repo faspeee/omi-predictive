@@ -2,8 +2,8 @@ package com.mercant.real.estate.municipality;
 
 import com.mercant.real.estate.municipality.configuration.EventBusVerticle;
 import com.mercant.real.estate.municipality.configuration.WebClientVerticle;
-import com.mercant.real.estate.municipality.core.contract.MunicipalityCore;
-import com.mercant.real.estate.municipality.core.implementation.SplitMunicipalityVerticle;
+import com.mercant.real.estate.municipality.core.MunicipalityCore;
+import com.mercant.real.estate.municipality.core.SplitMunicipalityVerticle;
 import com.mercant.real.estate.municipality.webinformation.MunicipalityInformation;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.mutiny.core.Vertx;
