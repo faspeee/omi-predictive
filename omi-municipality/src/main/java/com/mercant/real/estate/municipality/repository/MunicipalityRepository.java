@@ -6,7 +6,13 @@ import io.smallrye.mutiny.Uni;
 
 import java.util.List;
 
-public record MunicipalityRepository(DatabaseVerticle databaseVerticle) {
+public final class MunicipalityRepository {
+    private final DatabaseVerticle databaseVerticle;
+
+    public MunicipalityRepository(DatabaseVerticle databaseVerticle) {
+        this.databaseVerticle = databaseVerticle;
+    }
+
     public Uni<List<Municipality>> findAllMulti() {
         return databaseVerticle.getEmf().withSession(session -> session
                 .createQuery("FROM Municipality ", Municipality.class)

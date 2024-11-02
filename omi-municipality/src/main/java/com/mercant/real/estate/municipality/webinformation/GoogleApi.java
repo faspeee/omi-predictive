@@ -10,6 +10,8 @@ public final class GoogleApi {
     }
 
     public void getLatitudeLongitudeAndAltitude() {
-
+        webClientVerticle.getWebClient().get("https://maps.googleapis.com/maps/api/geocode/json?address=Toledo&region=es&key=AIzaSyCoZjQD3X4V-58k8uvhn7VzkqBPze2Z4nE")
+                .send()
+                .map(bufferHttpResponse -> bufferHttpResponse.bodyAsString());
     }
 }

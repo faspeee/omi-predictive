@@ -6,7 +6,12 @@ import io.smallrye.mutiny.Uni;
 
 import java.util.List;
 
-public record OldMunicipalityRepository(DatabaseVerticle databaseVerticle) {
+public final class OldMunicipalityRepository {
+    private final DatabaseVerticle databaseVerticle;
+
+    public OldMunicipalityRepository(DatabaseVerticle databaseVerticle) {
+        this.databaseVerticle = databaseVerticle;
+    }
 
     public Uni<List<OldMunicipality>> findAll() {
         return databaseVerticle.getEmf().withSession(session -> session

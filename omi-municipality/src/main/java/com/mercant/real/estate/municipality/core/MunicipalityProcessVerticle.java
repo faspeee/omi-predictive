@@ -2,9 +2,12 @@ package com.mercant.real.estate.municipality.core;
 
 import com.mercant.real.estate.municipality.configuration.EventBusVerticle;
 import com.mercant.real.estate.municipality.configuration.WebClientVerticle;
+import com.mercant.real.estate.municipality.entity.Municipality;
 import com.mercant.real.estate.municipality.repository.MunicipalityRepository;
 import com.mercant.real.estate.municipality.repository.OldMunicipalityRepository;
 import com.mercant.real.estate.municipality.utils.Logger;
+
+import java.util.List;
 
 import static com.mercant.real.estate.municipality.utils.Constant.MUNICIPALITY_CHANNEL;
 
@@ -41,6 +44,7 @@ public final class MunicipalityProcessVerticle implements MunicipalityCore {
      * The repository for accessing municipality data.
      */
     private final MunicipalityRepository municipalityRepository;
+    private final List<Municipality> municipalityList;
 
     /**
      * The repository for accessing old municipality data.
@@ -62,6 +66,7 @@ public final class MunicipalityProcessVerticle implements MunicipalityCore {
         this.eventBusVerticle = eventBusVerticle;
         this.webClientVerticle = webClientVerticle;
         this.municipalityRepository = municipalityRepository;
+        this.municipalityList = municipalityRepository.findAllMulti().await().indefinitely();
         this.oldMunicipalityRepository = oldMunicipalityRepository;
     }
 
