@@ -4,5 +4,5 @@ import lombok.Builder;
 
 @Builder
 public record OldMunicipalityModel(int year, String municipalityCode, String municipalityName,
-                                   int newMunicipalityCode) {
+                                   String newMunicipalityCode) {
 }

@@ -1,11 +1,14 @@
 package com.mercant.real.estate.municipality.core;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mercant.real.estate.municipality.configuration.EventBusVerticle;
 import com.mercant.real.estate.municipality.configuration.WebClientVerticle;
 import com.mercant.real.estate.municipality.entity.Municipality;
+import com.mercant.real.estate.municipality.model.OldAndCurrentMunicipality;
 import com.mercant.real.estate.municipality.repository.MunicipalityRepository;
 import com.mercant.real.estate.municipality.repository.OldMunicipalityRepository;
 import com.mercant.real.estate.municipality.utils.Logger;
+import com.mercant.real.estate.municipality.utils.UtilConverter;
 
 import java.util.List;
 
@@ -70,6 +73,10 @@ public final class MunicipalityProcessVerticle implements MunicipalityCore {
         this.oldMunicipalityRepository = oldMunicipalityRepository;
     }
 
+    private static OldAndCurrentMunicipality convertToSpecificClass(String msg) throws JsonProcessingException {
+        return UtilConverter.getObjectMapper().readValue(msg, OldAndCurrentMunicipality.class);
+    }
+
     /**
      * Processes municipality messages received from the EventBus.
      *
@@ -86,8 +93,12 @@ public final class MunicipalityProcessVerticle implements MunicipalityCore {
      */
     @Override
     public void processMunicipality() {
-        eventBusVerticle.getEventBus().consumer(MUNICIPALITY_CHANNEL, message -> {
-            Logger.info(message.body().toString());
+        eventBusVerticle.getEventBus().consumer(MUNICIPALITY_CHANNEL.text(), message -> {
+            try {
+                Logger.info(convertToSpecificClass(message.body().toString()).toString());
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
             // Additional processing logic can be added here
         });
     }

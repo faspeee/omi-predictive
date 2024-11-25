@@ -1,8 +1,19 @@
 package com.mercant.real.estate.municipality.core;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mercant.real.estate.municipality.configuration.EventBusVerticle;
+import com.mercant.real.estate.municipality.model.MunicipalityModel;
+import com.mercant.real.estate.municipality.model.OldAndCurrentMunicipality;
+import com.mercant.real.estate.municipality.model.OldMunicipalityModel;
 import com.mercant.real.estate.municipality.utils.Logger;
+import com.mercant.real.estate.municipality.utils.UtilConverter;
 import com.mercant.real.estate.municipality.webinformation.MunicipalityInformation;
+import io.smallrye.mutiny.Uni;
+import io.smallrye.mutiny.tuples.Tuple2;
+
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static com.mercant.real.estate.municipality.utils.Constant.MUNICIPALITY_CHANNEL;
 
@@ -41,6 +52,16 @@ public final class SplitMunicipalityVerticle implements MunicipalityCore {
         this.municipalityInformation = municipalityInformation;
     }
 
+    private static Set<OldAndCurrentMunicipality> aggregatedMunicipalities(Tuple2<Map<String, MunicipalityModel>, Map<String, Set<OldMunicipalityModel>>> oldAndNewMunicipalities) {
+        return oldAndNewMunicipalities.getItem1().entrySet().stream()
+                .map(keyValue -> new OldAndCurrentMunicipality(keyValue.getValue(), oldAndNewMunicipalities.getItem2().get(keyValue.getKey())))
+                .collect(Collectors.toSet());
+    }
+
+    private static String convertToJsonString(OldAndCurrentMunicipality municipalityModel) throws JsonProcessingException {
+        return UtilConverter.getObjectMapper().writeValueAsString(municipalityModel);
+    }
+
     /**
      * Initiates the process of splitting municipalities by publishing a message
      * to the EventBus.
@@ -58,11 +79,23 @@ public final class SplitMunicipalityVerticle implements MunicipalityCore {
     @Override
     public void processMunicipality() {
         Logger.info("Publishing start message to the municipality channel.");
-        municipalityInformation.readCurrentMunicipalities()
+        Uni<Map<String, Set<OldMunicipalityModel>>> oldMunicipalities = municipalityInformation.readOldMunicipalities();
+        Uni<Map<String, MunicipalityModel>> currentMunicipalities = municipalityInformation.readCurrentMunicipalities();
+        Uni.combine()
+                .all()
+                .unis(currentMunicipalities, oldMunicipalities)
+                .asTuple()
+                .map(SplitMunicipalityVerticle::aggregatedMunicipalities)
                 .subscribe()
-                .with(municipalityModels -> municipalityModels
-                        .forEach(municipalityModel -> eventBusVerticle.getEventBus()
-                                .publish(MUNICIPALITY_CHANNEL, municipalityModel.toString())));
+                .with(oldAndCurrentMunicipalities -> oldAndCurrentMunicipalities
+                        .forEach(oldAndCurrentMunicipality -> {
+                            try {
+                                eventBusVerticle.getEventBus()
+                                        .publish(MUNICIPALITY_CHANNEL.text(), convertToJsonString(oldAndCurrentMunicipality));
+                            } catch (JsonProcessingException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }));
 
     }
 }
