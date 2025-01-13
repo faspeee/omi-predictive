@@ -1,15 +1,16 @@
-package com.mercant.real.estate.municipality.repository;
+package com.mercant.real.estate.municipality.repository.implementation;
 
 import com.mercant.real.estate.municipality.configuration.DatabaseVerticle;
 import com.mercant.real.estate.municipality.entity.OldMunicipality;
+import com.mercant.real.estate.municipality.repository.contract.OldMunicipalityRepository;
 import io.smallrye.mutiny.Uni;
 
 import java.util.List;
 
-public final class OldMunicipalityRepository {
+public final class OldMunicipalityDatabaseRepository implements OldMunicipalityRepository {
     private final DatabaseVerticle databaseVerticle;
 
-    public OldMunicipalityRepository(DatabaseVerticle databaseVerticle) {
+    public OldMunicipalityDatabaseRepository(DatabaseVerticle databaseVerticle) {
         this.databaseVerticle = databaseVerticle;
     }
 

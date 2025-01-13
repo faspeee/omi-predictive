@@ -4,7 +4,7 @@ public enum Constant {
     URL_CURRENT_MUNICIPALITY {
         @Override
         public String text() {
-            return "http://www.istat.it/storage/codici-unita-amministrative/Elenco-codici-statistici-e-denominazioni-delle-unità-territoriali.zip";
+            return "http://www.istat.it/storage/codici-unita-amministrative/Elenco-codici-statistici-e-denominazioni-delle-unita-territoriali.zip";
         }
     },
     URL_OLD_MUNICIPALITY {

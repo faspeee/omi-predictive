@@ -12,10 +12,6 @@
 
         <properties>
 
-            <!-- PostgreSQL -->
-            <property name="jakarta.persistence.jdbc.url"
-                      value="jdbc:postgresql://localhost/postgres"/>  <!--(3)-->
-
             <!-- Credentials -->
             <property name="jakarta.persistence.jdbc.user"
                       value="user_postgresql"/>

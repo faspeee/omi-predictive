@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.mercant.real.estate.AppTest" time="0.038" tests="1" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="17"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Program1\project-fabian\omi-predictive\omi-library\target\test-classes;C:\Program1\project-fabian\omi-predictive\omi-library\target\classes;C:\Users\U479687\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;C:\Users\U479687\.m2\repository\org\projectlombok\lombok\1.18.30\lombok-1.18.30.jar;C:\Users\U479687\.m2\repository\io\smallrye\reactive\mutiny\2.6.2\mutiny-2.6.2.jar;C:\Users\U479687\.m2\repository\io\smallrye\common\smallrye-common-annotation\2.5.0\smallrye-common-annotation-2.5.0.jar;C:\Users\U479687\.m2\repository\org\jctools\jctools-core\4.0.5\jctools-core-4.0.5.jar;C:\Users\U479687\.m2\repository\io\smallrye\reactive\smallrye-mutiny-vertx-core\3.15.1\smallrye-mutiny-vertx-core-3.15.1.jar;C:\Users\U479687\.m2\repository\io\smallrye\reactive\smallrye-mutiny-vertx-runtime\3.15.1\smallrye-mutiny-vertx-runtime-3.15.1.jar;C:\Users\U479687\.m2\repository\io\vertx\vertx-core\4.5.10\vertx-core-4.5.10.jar;C:\Users\U479687\.m2\repository\io\netty\netty-common\4.1.111.Final\netty-common-4.1.111.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-buffer\4.1.111.Final\netty-buffer-4.1.111.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-transport\4.1.111.Final\netty-transport-4.1.111.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-handler\4.1.111.Final\netty-handler-4.1.111.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-transport-native-unix-common\4.1.111.Final\netty-transport-native-unix-common-4.1.111.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-codec\4.1.111.Final\netty-codec-4.1.111.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-handler-proxy\4.1.111.Final\netty-handler-proxy-4.1.111.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-codec-socks\4.1.111.Final\netty-codec-socks-4.1.111.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-codec-http\4.1.111.Final\netty-codec-http-4.1.111.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-codec-http2\4.1.111.Final\netty-codec-http2-4.1.111.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-resolver\4.1.111.Final\netty-resolver-4.1.111.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-resolver-dns\4.1.111.Final\netty-resolver-dns-4.1.111.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-codec-dns\4.1.111.Final\netty-codec-dns-4.1.111.Final.jar;C:\Users\U479687\.m2\repository\io\smallrye\reactive\vertx-mutiny-generator\3.15.1\vertx-mutiny-generator-3.15.1.jar;C:\Users\U479687\.m2\repository\io\vertx\vertx-codegen\4.5.10\vertx-codegen-4.5.10.jar;C:\Users\U479687\.m2\repository\com\fasterxml\jackson\dataformat\jackson-dataformat-csv\2.16.2\jackson-dataformat-csv-2.16.2.jar;C:\Users\U479687\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.16.2\jackson-databind-2.16.2.jar;C:\Users\U479687\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.16.2\jackson-annotations-2.16.2.jar;C:\Users\U479687\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.16.2\jackson-core-2.16.2.jar;"/>
+    <property name="java.vm.vendor" value="Eclipse Adoptium"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://adoptium.net/"/>
+    <property name="user.timezone" value="Europe/Rome"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="java.vm.specification.version" value="17"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="C:\tools\java\jdk-17.0.1+12\bin"/>
+    <property name="sun.java.command" value="C:\Users\U479687\AppData\Local\Temp\surefire12526735818303742371\surefirebooter-20250113094133749_3.jar C:\Users\U479687\AppData\Local\Temp\surefire12526735818303742371 2025-01-13T09-41-33_250-jvmRun1 surefire-20250113094133749_1tmp surefire_0-20250113094133749_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="C:\Program1\project-fabian\omi-predictive\omi-library\target\test-classes;C:\Program1\project-fabian\omi-predictive\omi-library\target\classes;C:\Users\U479687\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;C:\Users\U479687\.m2\repository\org\projectlombok\lombok\1.18.30\lombok-1.18.30.jar;C:\Users\U479687\.m2\repository\io\smallrye\reactive\mutiny\2.6.2\mutiny-2.6.2.jar;C:\Users\U479687\.m2\repository\io\smallrye\common\smallrye-common-annotation\2.5.0\smallrye-common-annotation-2.5.0.jar;C:\Users\U479687\.m2\repository\org\jctools\jctools-core\4.0.5\jctools-core-4.0.5.jar;C:\Users\U479687\.m2\repository\io\smallrye\reactive\smallrye-mutiny-vertx-core\3.15.1\smallrye-mutiny-vertx-core-3.15.1.jar;C:\Users\U479687\.m2\repository\io\smallrye\reactive\smallrye-mutiny-vertx-runtime\3.15.1\smallrye-mutiny-vertx-runtime-3.15.1.jar;C:\Users\U479687\.m2\repository\io\vertx\vertx-core\4.5.10\vertx-core-4.5.10.jar;C:\Users\U479687\.m2\repository\io\netty\netty-common\4.1.111.Final\netty-common-4.1.111.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-buffer\4.1.111.Final\netty-buffer-4.1.111.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-transport\4.1.111.Final\netty-transport-4.1.111.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-handler\4.1.111.Final\netty-handler-4.1.111.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-transport-native-unix-common\4.1.111.Final\netty-transport-native-unix-common-4.1.111.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-codec\4.1.111.Final\netty-codec-4.1.111.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-handler-proxy\4.1.111.Final\netty-handler-proxy-4.1.111.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-codec-socks\4.1.111.Final\netty-codec-socks-4.1.111.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-codec-http\4.1.111.Final\netty-codec-http-4.1.111.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-codec-http2\4.1.111.Final\netty-codec-http2-4.1.111.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-resolver\4.1.111.Final\netty-resolver-4.1.111.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-resolver-dns\4.1.111.Final\netty-resolver-dns-4.1.111.Final.jar;C:\Users\U479687\.m2\repository\io\netty\netty-codec-dns\4.1.111.Final\netty-codec-dns-4.1.111.Final.jar;C:\Users\U479687\.m2\repository\io\smallrye\reactive\vertx-mutiny-generator\3.15.1\vertx-mutiny-generator-3.15.1.jar;C:\Users\U479687\.m2\repository\io\vertx\vertx-codegen\4.5.10\vertx-codegen-4.5.10.jar;C:\Users\U479687\.m2\repository\com\fasterxml\jackson\dataformat\jackson-dataformat-csv\2.16.2\jackson-dataformat-csv-2.16.2.jar;C:\Users\U479687\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.16.2\jackson-databind-2.16.2.jar;C:\Users\U479687\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.16.2\jackson-annotations-2.16.2.jar;C:\Users\U479687\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.16.2\jackson-core-2.16.2.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\U479687"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2021-10-19"/>
+    <property name="java.home" value="C:\tools\java\jdk-17.0.1+12"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Program1\project-fabian\omi-predictive\omi-library"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\U479687\AppData\Local\Temp\surefire12526735818303742371\surefirebooter-20250113094133749_3.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="17.0.1+12"/>
+    <property name="user.name" value="U479687"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Temurin-17.0.1+12"/>
+    <property name="localRepository" value="C:\Users\U479687\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
+    <property name="java.io.tmpdir" value="C:\Users\U479687\AppData\Local\Temp\"/>
+    <property name="idea.version" value="2024.1.1"/>
+    <property name="java.version" value="17.0.1"/>
+    <property name="user.dir" value="C:\Program1\project-fabian\omi-predictive\omi-library"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\tools\java\jdk-17.0.1+12\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\windows\System32;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\windows\System32\OpenSSH\;c:\Program Files\Zulu\zulu-8-jre\bin;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;;C:\Program Files (x86)\Intesa-SanPaolo\SpiVrsSdkWrapper;C:\Program Files (x86)\Enterprise Vault\EVClient\;C:\Program Files (x86)\DataLogics\APDFL10.1.0\DLE;c:\Program Files (x86)\Intesa-Sanpaolo\SPI3270;C:\Program Files (x86)\Pulse Secure\VC142.CRT\X64\;C:\Program Files (x86)\Pulse Secure\VC142.CRT\X86\;C:\Program Files (x86)\Common Files\Pulse Secure\TNC Client Plugin\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;c:\Program Files (x86)\BlueZone\;C:\Users\U479687\AppData\Local\Microsoft\WindowsApps;C:\Users\U479687\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\U479687\AppData\Local\Programs\Git\cmd;C:\Users\U479687\AppData\Local\Coursier\data\bin;C:\Users\U479687\AppData\Local\Microsoft\WindowsApps;C:\tools\java\jdk-17.0.1+12\bin;C:\tools\node\node-v12.16.1-win-x64;;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="Eclipse Adoptium"/>
+    <property name="java.vm.version" value="17.0.1+12"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="61.0"/>
+  </properties>
+  <testcase name="testApp" classname="com.mercant.real.estate.AppTest" time="0.008"/>
+</testsuite>

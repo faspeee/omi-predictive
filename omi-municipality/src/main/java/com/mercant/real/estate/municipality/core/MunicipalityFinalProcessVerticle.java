@@ -5,8 +5,8 @@ import com.mercant.real.estate.municipality.configuration.EventBusVerticle;
 import com.mercant.real.estate.municipality.configuration.WebClientVerticle;
 import com.mercant.real.estate.municipality.entity.Municipality;
 import com.mercant.real.estate.municipality.model.NewAndOldMunicipality;
-import com.mercant.real.estate.municipality.repository.MunicipalityRepository;
-import com.mercant.real.estate.municipality.repository.OldMunicipalityRepository;
+import com.mercant.real.estate.municipality.repository.implementation.MunicipalityDatabaseRepository;
+import com.mercant.real.estate.municipality.repository.implementation.OldMunicipalityDatabaseRepository;
 import com.mercant.real.estate.municipality.utils.Logger;
 import com.mercant.real.estate.municipality.utils.UtilConverter;
 
@@ -48,35 +48,35 @@ public final class MunicipalityFinalProcessVerticle implements MunicipalityCore 
     /**
      * The repository for accessing municipality data.
      */
-    private final MunicipalityRepository municipalityRepository;
+    private final MunicipalityDatabaseRepository municipalityDatabaseRepository;
     private final Map<String, Municipality> municipalityMap;
 
     /**
      * The repository for accessing old municipality data.
      */
-    private final OldMunicipalityRepository oldMunicipalityRepository;
+    private final OldMunicipalityDatabaseRepository oldMunicipalityDatabaseRepository;
 
     /**
      * Constructs a MunicipalityFinalProcessVerticle with the specified dependencies.
      *
-     * @param eventBusVerticle          the EventBusVerticle instance for message consumption.
-     * @param webClientVerticle         the WebClientVerticle instance for making HTTP requests.
-     * @param municipalityRepository    the repository for accessing current municipality data.
-     * @param oldMunicipalityRepository the repository for accessing legacy municipality data.
+     * @param eventBusVerticle                  the EventBusVerticle instance for message consumption.
+     * @param webClientVerticle                 the WebClientVerticle instance for making HTTP requests.
+     * @param municipalityDatabaseRepository    the repository for accessing current municipality data.
+     * @param oldMunicipalityDatabaseRepository the repository for accessing legacy municipality data.
      */
     public MunicipalityFinalProcessVerticle(EventBusVerticle eventBusVerticle,
                                             WebClientVerticle webClientVerticle,
-                                            MunicipalityRepository municipalityRepository,
-                                            OldMunicipalityRepository oldMunicipalityRepository) {
+                                            MunicipalityDatabaseRepository municipalityDatabaseRepository,
+                                            OldMunicipalityDatabaseRepository oldMunicipalityDatabaseRepository) {
         this.eventBusVerticle = eventBusVerticle;
         this.webClientVerticle = webClientVerticle;
-        this.municipalityRepository = municipalityRepository;
-        this.municipalityMap = municipalityRepository.findAllMulti()
+        this.municipalityDatabaseRepository = municipalityDatabaseRepository;
+        this.municipalityMap = municipalityDatabaseRepository.findAllMulti()
                 .map(municipalities -> municipalities.stream()
                         .collect(Collectors.toMap(Municipality::getMunicipalityCode, Function.identity())))
                 .await()
                 .indefinitely();
-        this.oldMunicipalityRepository = oldMunicipalityRepository;
+        this.oldMunicipalityDatabaseRepository = oldMunicipalityDatabaseRepository;
     }
 
     private static NewAndOldMunicipality convertToSpecificClass(String msg) throws JsonProcessingException {
@@ -102,7 +102,7 @@ public final class MunicipalityFinalProcessVerticle implements MunicipalityCore 
         eventBusVerticle.getEventBus().consumer(MUNICIPALITY_CHANNEL.text(), message -> {
             try {
                 NewAndOldMunicipality newAndOldMunicipality = convertToSpecificClass(message.body().toString());
-                municipalityRepository.saveAll(newAndOldMunicipality.municipalityModel())
+                municipalityDatabaseRepository.saveAll(newAndOldMunicipality.municipalityModel())
                         .subscribe()
                         .with(ignored -> Logger.info("entity save"));
             } catch (JsonProcessingException e) {

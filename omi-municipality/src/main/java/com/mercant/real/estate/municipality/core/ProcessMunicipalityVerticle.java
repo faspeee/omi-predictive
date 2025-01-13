@@ -8,7 +8,7 @@ import com.mercant.real.estate.municipality.model.MunicipalityModel;
 import com.mercant.real.estate.municipality.model.NewAndOldMunicipality;
 import com.mercant.real.estate.municipality.model.OldAndCurrentMunicipality;
 import com.mercant.real.estate.municipality.model.OldMunicipalityModel;
-import com.mercant.real.estate.municipality.repository.MunicipalityRepository;
+import com.mercant.real.estate.municipality.repository.implementation.MunicipalityDatabaseRepository;
 import com.mercant.real.estate.municipality.utils.Logger;
 import com.mercant.real.estate.municipality.utils.UtilConverter;
 import com.mercant.real.estate.municipality.webinformation.MunicipalityInformation;
@@ -52,18 +52,18 @@ public final class ProcessMunicipalityVerticle implements MunicipalityCore {
     /**
      * The repository for accessing municipality data.
      */
-    private final MunicipalityRepository municipalityRepository;
+    private final MunicipalityDatabaseRepository municipalityDatabaseRepository;
 
     /**
      * Constructs a ProcessMunicipalityVerticle with the specified dependencies.
      *
      * @param eventBusVerticle the EventBusVerticle instance for message publication.
      */
-    public ProcessMunicipalityVerticle(EventBusVerticle eventBusVerticle, MunicipalityInformation municipalityInformation, MunicipalityRepository municipalityRepository) {
+    public ProcessMunicipalityVerticle(EventBusVerticle eventBusVerticle, MunicipalityInformation municipalityInformation, MunicipalityDatabaseRepository municipalityDatabaseRepository) {
         this.eventBusVerticle = eventBusVerticle;
         this.municipalityInformation = municipalityInformation;
-        this.municipalityRepository = municipalityRepository;
-        this.municipalityMap = municipalityRepository.findAllMulti()
+        this.municipalityDatabaseRepository = municipalityDatabaseRepository;
+        this.municipalityMap = municipalityDatabaseRepository.findAllMulti()
                 .map(municipalities -> municipalities.stream()
                         .collect(Collectors.toMap(Municipality::getMunicipalityCode, Function.identity())))
                 .await()
