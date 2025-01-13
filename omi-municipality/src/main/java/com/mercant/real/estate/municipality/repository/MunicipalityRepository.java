@@ -5,6 +5,7 @@ import com.mercant.real.estate.municipality.entity.Municipality;
 import io.smallrye.mutiny.Uni;
 
 import java.util.List;
+import java.util.Set;
 
 public final class MunicipalityRepository {
     private final DatabaseVerticle databaseVerticle;
@@ -17,5 +18,10 @@ public final class MunicipalityRepository {
         return databaseVerticle.getEmf().withSession(session -> session
                 .createQuery("FROM Municipality ", Municipality.class)
                 .getResultList());
+    }
+
+    public Uni<Void> saveAll(Set<Municipality> municipality) {
+        return databaseVerticle.getEmf().withSession(session ->
+                session.persistAll((Object) municipality.toArray(new Municipality[0])));
     }
 }

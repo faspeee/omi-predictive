@@ -4,8 +4,8 @@ import com.mercant.real.estate.municipality.configuration.DatabaseVerticle;
 import com.mercant.real.estate.municipality.configuration.EventBusVerticle;
 import com.mercant.real.estate.municipality.configuration.WebClientVerticle;
 import com.mercant.real.estate.municipality.core.MunicipalityCore;
-import com.mercant.real.estate.municipality.core.MunicipalityProcessVerticle;
-import com.mercant.real.estate.municipality.core.SplitMunicipalityVerticle;
+import com.mercant.real.estate.municipality.core.MunicipalityFinalProcessVerticle;
+import com.mercant.real.estate.municipality.core.ProcessMunicipalityVerticle;
 import com.mercant.real.estate.municipality.repository.MunicipalityRepository;
 import com.mercant.real.estate.municipality.repository.OldMunicipalityRepository;
 import com.mercant.real.estate.municipality.webinformation.MunicipalityInformation;
@@ -24,10 +24,10 @@ public final class AppMunicipality {
         vertx.deployVerticleAndAwait(databaseVerticle, new DeploymentOptions());
         MunicipalityRepository municipalityRepository = new MunicipalityRepository(databaseVerticle);
         OldMunicipalityRepository oldMunicipalityRepository = new OldMunicipalityRepository(databaseVerticle);
-        MunicipalityProcessVerticle municipalityProcessVerticle = new MunicipalityProcessVerticle(eventBusVerticle,
+        MunicipalityFinalProcessVerticle municipalityProcessVerticle = new MunicipalityFinalProcessVerticle(eventBusVerticle,
                 webClientVerticle, municipalityRepository, oldMunicipalityRepository);
         MunicipalityInformation municipalityInformation = new MunicipalityInformation(webClientVerticle);
-        MunicipalityCore splitMunicipalityVerticle = new SplitMunicipalityVerticle(eventBusVerticle, municipalityInformation);
+        MunicipalityCore splitMunicipalityVerticle = new ProcessMunicipalityVerticle(eventBusVerticle, municipalityInformation, municipalityRepository);
         municipalityProcessVerticle.processMunicipality();
         splitMunicipalityVerticle.processMunicipality();
         System.out.println("Deployment completed");

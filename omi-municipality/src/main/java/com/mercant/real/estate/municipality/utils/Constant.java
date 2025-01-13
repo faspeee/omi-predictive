@@ -1,10 +1,34 @@
 package com.mercant.real.estate.municipality.utils;
 
-public final class Constant {
-    public static final String URL_CURRENT_MUNICIPALITY = "https://www.istat.it/storage/codici-unita-amministrative/Archivio-elenco-comuni-codici%20e-denominazioni_Anno_2024.zip";
-    public static final String URL_OLD_MUNICIPALITY = "https://www.istat.it/wp-content/uploads/2024/09/Elenco-comuni-soppressi.zip";
-    public static final String MUNICIPALITY_CHANNEL = "municipality.channel"; // Channel name for event bus messages
+public enum Constant {
+    URL_CURRENT_MUNICIPALITY {
+        @Override
+        public String text() {
+            return "http://www.istat.it/storage/codici-unita-amministrative/Elenco-codici-statistici-e-denominazioni-delle-unità-territoriali.zip";
+        }
+    },
+    URL_OLD_MUNICIPALITY {
+        @Override
+        public String text() {
+            return "https://www.istat.it/wp-content/uploads/2024/09/Elenco-comuni-soppressi.zip";
+        }
+    },
+    MUNICIPALITY_CHANNEL {
+        @Override
+        public String text() {
+            return "municipality.channel";// Channel name for event bus messages
+        }
+    }, CSV_END_FILE {
+        @Override
+        public String text() {
+            return ".csv";
+        }
+    }, EXCEL_END_FILE {
+        @Override
+        public String text() {
+            return ".xlsx";
+        }
+    };
 
-    private Constant() {
-    }
+    public abstract String text();
 }
