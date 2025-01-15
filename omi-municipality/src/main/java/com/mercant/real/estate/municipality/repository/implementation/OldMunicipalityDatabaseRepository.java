@@ -6,6 +6,7 @@ import com.mercant.real.estate.municipality.repository.contract.OldMunicipalityR
 import io.smallrye.mutiny.Uni;
 
 import java.util.List;
+import java.util.Set;
 
 public final class OldMunicipalityDatabaseRepository implements OldMunicipalityRepository {
     private final DatabaseVerticle databaseVerticle;
@@ -18,6 +19,12 @@ public final class OldMunicipalityDatabaseRepository implements OldMunicipalityR
         return databaseVerticle.getEmf().withSession(session -> session
                 .createQuery("FROM OldMunicipality", OldMunicipality.class)
                 .getResultList());
+    }
+
+    @Override
+    public Uni<Void> saveAll(Set<OldMunicipality> oldMunicipalities) {
+        return databaseVerticle.getEmf().withSession(session ->
+                session.persistAll((Object) oldMunicipalities.toArray(new OldMunicipality[0])));
     }
 
 }

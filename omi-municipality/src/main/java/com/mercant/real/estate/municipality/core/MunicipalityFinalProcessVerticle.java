@@ -9,11 +9,13 @@ import com.mercant.real.estate.municipality.repository.implementation.Municipali
 import com.mercant.real.estate.municipality.repository.implementation.OldMunicipalityDatabaseRepository;
 import com.mercant.real.estate.municipality.utils.Logger;
 import com.mercant.real.estate.municipality.utils.UtilConverter;
+import io.smallrye.mutiny.Uni;
 
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import static com.mercant.real.estate.core.util.SafeExecutor.exec;
 import static com.mercant.real.estate.municipality.utils.Constant.MUNICIPALITY_CHANNEL;
 
 /**
@@ -73,7 +75,7 @@ public final class MunicipalityFinalProcessVerticle implements MunicipalityCore 
         this.municipalityDatabaseRepository = municipalityDatabaseRepository;
         this.municipalityMap = municipalityDatabaseRepository.findAllMulti()
                 .map(municipalities -> municipalities.stream()
-                        .collect(Collectors.toMap(Municipality::getMunicipalityCode, Function.identity())))
+                        .collect(Collectors.toMap(Municipality::getMunicipalityCode, Function.identity(), (first, second) -> first)))
                 .await()
                 .indefinitely();
         this.oldMunicipalityDatabaseRepository = oldMunicipalityDatabaseRepository;
@@ -99,16 +101,16 @@ public final class MunicipalityFinalProcessVerticle implements MunicipalityCore 
      */
     @Override
     public void processMunicipality() {
-        eventBusVerticle.getEventBus().consumer(MUNICIPALITY_CHANNEL.text(), message -> {
-            try {
-                NewAndOldMunicipality newAndOldMunicipality = convertToSpecificClass(message.body().toString());
-                municipalityDatabaseRepository.saveAll(newAndOldMunicipality.municipalityModel())
-                        .subscribe()
-                        .with(ignored -> Logger.info("entity save"));
-            } catch (JsonProcessingException e) {
-                throw new RuntimeException(e);
-            }
-            // Additional processing logic can be added here
-        });
+        eventBusVerticle.getEventBus().consumer(MUNICIPALITY_CHANNEL.text(), message ->
+                exec(() -> {
+                    NewAndOldMunicipality newAndOldMunicipality = convertToSpecificClass(message.body().toString());
+                    Uni.combine().all()
+                            .unis(oldMunicipalityDatabaseRepository.saveAll(newAndOldMunicipality.oldMunicipalities()),
+                                    municipalityDatabaseRepository.saveAll(newAndOldMunicipality.municipalityModel()))
+                            .asTuple()
+                            .subscribe()
+                            .with(ignored -> Logger.info("entity save"));
+                })  // Additional processing logic can be added here
+        );
     }
 }

@@ -27,6 +27,7 @@ import java.util.stream.StreamSupport;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import static com.mercant.real.estate.core.util.ConstantSeparator.SEMICOLON;
 import static com.mercant.real.estate.municipality.utils.Constant.*;
 import static com.mercant.real.estate.municipality.utils.IntConstant.LINE_TO_SKIP_CURRENT_MUNICIPALITY;
 import static com.mercant.real.estate.municipality.utils.IntConstant.LINE_TO_SKIP_OLD_MUNICIPALITY;
@@ -65,7 +66,8 @@ public final class MunicipalityInformation {
      * A predicate used to filter lines in CSV files, ensuring that the line is valid by checking if
      * specific fields (index 7 and 3) are not blank.
      */
-    private static final Predicate<String> LINE_FILTER = line -> !line.split(";")[7].isBlank() && !line.split(";")[3].isBlank();
+    private static final Predicate<String> LINE_FILTER = line -> !line.split(SEMICOLON.separator())[7].isBlank() &&
+            !line.split(SEMICOLON.separator())[3].isBlank();
 
     /**
      * A function that reads and processes CSV data containing {@code OldMunicipalityModel} objects from a {@link ZipInputStream}.
@@ -152,7 +154,8 @@ public final class MunicipalityInformation {
      * and the values are aggregated as defined by the {@code downstream} collector.
      */
     private static <T, K, A, D> Map<K, D> aggregateStreamToMap(Set<T> set, Function<T, K> key, Collector<? super T, A, D> downstream) {
-        return set.stream().collect(Collectors.groupingBy(key, downstream));
+        return set.stream()
+                .collect(Collectors.groupingBy(key, downstream));
     }
 
     /**
@@ -166,7 +169,8 @@ public final class MunicipalityInformation {
      * and the values are the objects themselves.
      */
     private static <T, K> Map<K, T> aggregateStreamToMap(Set<T> set, Function<T, K> key) {
-        return set.stream().collect(Collectors.toMap(key, Function.identity()));
+        return set.stream()
+                .collect(Collectors.toMap(key, Function.identity()));
     }
 
     /**
@@ -196,7 +200,7 @@ public final class MunicipalityInformation {
      * @return a new {@link MunicipalityModel} object constructed from the CSV data.
      */
     private static MunicipalityModel createMunicipalityModel(String row) {
-        final String[] splitWords = row.split(";");
+        final String[] splitWords = row.split(SEMICOLON.separator());
         return MunicipalityModel.builder()
                 .regionCode(splitWords[0])
                 .provinceCode(splitWords[2])
@@ -232,12 +236,12 @@ public final class MunicipalityInformation {
      * @return a new {@link OldMunicipalityModel} object constructed from the CSV data.
      */
     private static OldMunicipalityModel createOldMunicipalityModel(String row) {
-        final String[] rowSplit = row.split(";");
+        final String[] rowSplit = row.split(SEMICOLON.separator());
         return OldMunicipalityModel.builder()
                 .year(Integer.parseInt(rowSplit[0]))
-                .municipalityCode(rowSplit[3])
+                .municipalityCode(Integer.valueOf(rowSplit[3]).toString()) // this line can be string?
                 .municipalityName(rowSplit[4])
-                .newMunicipalityCode(rowSplit[7])
+                .newMunicipalityCode(Integer.valueOf(rowSplit[7]).toString())// this line can be string?
                 .build();
     }
 

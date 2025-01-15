@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mercant.real.estate.municipality.configuration.EventBusVerticle;
 import com.mercant.real.estate.municipality.convert.MunicipalityConverter;
 import com.mercant.real.estate.municipality.entity.Municipality;
+import com.mercant.real.estate.municipality.entity.OldMunicipality;
 import com.mercant.real.estate.municipality.model.MunicipalityModel;
 import com.mercant.real.estate.municipality.model.NewAndOldMunicipality;
 import com.mercant.real.estate.municipality.model.OldAndCurrentMunicipality;
@@ -20,7 +21,11 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import static com.mercant.real.estate.core.util.SafeExecutor.exec;
+import static com.mercant.real.estate.municipality.convert.MunicipalityConverter.fromMunicipality;
+import static com.mercant.real.estate.municipality.convert.MunicipalityConverter.fromOldMunicipalityModel;
 import static com.mercant.real.estate.municipality.utils.Constant.MUNICIPALITY_CHANNEL;
 
 /**
@@ -71,8 +76,10 @@ public final class ProcessMunicipalityVerticle implements MunicipalityCore {
     }
 
     private static Map<String, OldAndCurrentMunicipality> aggregatedMunicipalities(Tuple2<Map<String, MunicipalityModel>, Map<String, Set<OldMunicipalityModel>>> oldAndNewMunicipalities) {
-        return oldAndNewMunicipalities.getItem1().entrySet().stream()
-                .map(keyValue -> new AbstractMap.SimpleImmutableEntry<>(keyValue.getKey(), new OldAndCurrentMunicipality(keyValue.getValue(), oldAndNewMunicipalities.getItem2().get(keyValue.getKey()))))
+        return oldAndNewMunicipalities.getItem1().entrySet()
+                .stream()
+                .map(keyValue -> new AbstractMap.SimpleImmutableEntry<>(keyValue.getKey(), new OldAndCurrentMunicipality(keyValue.getValue(),
+                        oldAndNewMunicipalities.getItem2().get(keyValue.getKey()))))
                 .collect(Collectors.toMap(AbstractMap.SimpleImmutableEntry::getKey, AbstractMap.SimpleImmutableEntry::getValue));
     }
 
@@ -107,14 +114,8 @@ public final class ProcessMunicipalityVerticle implements MunicipalityCore {
                 .map(oldAndCurrentMunicipalityMap -> new NewAndOldMunicipality(calculateNewMunicipalities(oldAndCurrentMunicipalityMap),
                         calculateOldMunicipalities(oldAndCurrentMunicipalityMap)))
                 .subscribe()
-                .with(oldAndCurrentMunicipalities -> {
-                    try {
-                        eventBusVerticle.getEventBus()
-                                .publish(MUNICIPALITY_CHANNEL.text(), convertToJsonString(oldAndCurrentMunicipalities));
-                    } catch (JsonProcessingException e) {
-                        throw new RuntimeException(e);
-                    }
-                });
+                .with(oldAndCurrentMunicipalities -> exec(() -> eventBusVerticle.getEventBus()
+                        .publish(MUNICIPALITY_CHANNEL.text(), convertToJsonString(oldAndCurrentMunicipalities))));
 
     }
 
@@ -127,10 +128,11 @@ public final class ProcessMunicipalityVerticle implements MunicipalityCore {
                 .collect(Collectors.toSet());
     }
 
-    private Set<Municipality> calculateOldMunicipalities(Map<String, OldAndCurrentMunicipality> oldAndCurrentMunicipality) {
-        return municipalityMap.entrySet().stream()
-                .filter(currentMunicipalities -> oldAndCurrentMunicipality.get(currentMunicipalities.getKey()) == null)
-                .map(Map.Entry::getValue)
+    private Set<OldMunicipality> calculateOldMunicipalities(Map<String, OldAndCurrentMunicipality> oldAndCurrentMunicipality) {
+        return Stream.concat(municipalityMap.entrySet().stream()
+                        .filter(currentMunicipalities -> oldAndCurrentMunicipality.get(currentMunicipalities.getKey()) == null)
+                        .map(value -> fromMunicipality(value.getValue())), oldAndCurrentMunicipality.values().stream()
+                        .flatMap(value -> fromOldMunicipalityModel(value.oldMunicipalityModelSet())))
                 .collect(Collectors.toSet());
     }
 }

@@ -19,6 +19,6 @@ public class OldMunicipality {
     @Column(name = "municipality_name")
     private String municipalityName;
     @Column(name = "new_municipality_code")
-    private int newMunicipalityCode;
+    private String newMunicipalityCode;
 
 }

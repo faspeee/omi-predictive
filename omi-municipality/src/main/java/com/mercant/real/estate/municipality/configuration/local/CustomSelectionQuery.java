@@ -1,9 +1,9 @@
 package com.mercant.real.estate.municipality.configuration.local;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.smallrye.mutiny.Uni;
 import io.smallrye.mutiny.vertx.core.AbstractVerticle;
+import io.vertx.core.json.JsonObject;
 import io.vertx.mutiny.core.Vertx;
 import io.vertx.mutiny.core.buffer.Buffer;
 import jakarta.persistence.CacheRetrieveMode;
@@ -23,6 +23,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static com.mercant.real.estate.core.util.ConstantExtension.JSON_EXTENSION;
+import static com.mercant.real.estate.core.util.ConstantSeparator.COLON;
+import static com.mercant.real.estate.core.util.SafeExecutor.exec;
 import static com.mercant.real.estate.municipality.utils.StringUtil.getEntityNextToFrom;
 
 public class CustomSelectionQuery<T> extends AbstractVerticle implements Mutiny.SelectionQuery<T> {
@@ -43,16 +46,15 @@ public class CustomSelectionQuery<T> extends AbstractVerticle implements Mutiny.
     }
 
     public Uni<Void> saveAll(Set<?> listObject) {
-        return Vertx.vertx().fileSystem()
-                .writeFile(query + ".txt", Buffer.buffer(listObject.stream()
-                        .map(element -> {
-                            try {
-                                return objectMapper.writeValueAsString(element);
-                            } catch (JsonProcessingException e) {
-                                throw new RuntimeException(e);
-                            }
-                        })
-                        .collect(Collectors.joining())));
+        if (!listObject.isEmpty()) {
+            return Vertx.vertx()
+                    .fileSystem()
+                    .writeFile(JSON_EXTENSION.compoundExtension(query), Buffer.buffer(listObject.stream()
+                            .map(elementToConvert -> exec(objectMapper::writeValueAsString, elementToConvert))
+                            .collect(Collectors.joining(COLON.separator(), "[", "]"))));
+        } else {
+            return Uni.createFrom().voidItem();
+        }
     }
 
     @Override
@@ -100,7 +102,7 @@ public class CustomSelectionQuery<T> extends AbstractVerticle implements Mutiny.
 
     @Override
     public Uni<List<T>> getResultList() {
-        String path = getEntity(query) + ".txt";
+        String path = JSON_EXTENSION.compoundExtension(getEntity(query));
         if (new File(path).exists()) {
             return Vertx.vertx().fileSystem().readFile(path)
                     .map(this::convertToList);
@@ -111,7 +113,9 @@ public class CustomSelectionQuery<T> extends AbstractVerticle implements Mutiny.
     }
 
     private List<T> convertToList(Buffer buffer) {
-        return new ArrayList<>();
+        return buffer.toJsonArray().stream()
+                .map(element -> ((JsonObject) element).mapTo(aClass))
+                .toList();
     }
 
     @Override
