@@ -119,6 +119,19 @@ public final class ProcessMunicipalityVerticle implements MunicipalityCore {
 
     }
 
+    /**
+     * Calculates a set of new municipalities that do not exist in the current municipality map.
+     *
+     * <p>This method processes a map of old and current municipalities to identify new municipalities
+     * that are not already present in the existing {@code municipalityMap}. It uses the municipality
+     * code as the key to determine whether a municipality is new. The resulting set contains the
+     * converted {@link Municipality} objects.
+     *
+     * @param oldAndCurrentMunicipality a map where the key is a string identifier, and the value is
+     *                                  an {@link OldAndCurrentMunicipality} object representing old
+     *                                  and current municipality data
+     * @return a set of {@link Municipality} objects representing the new municipalities
+     */
     private Set<Municipality> calculateNewMunicipalities(Map<String, OldAndCurrentMunicipality> oldAndCurrentMunicipality) {
         return oldAndCurrentMunicipality.values()
                 .stream()
@@ -128,11 +141,33 @@ public final class ProcessMunicipalityVerticle implements MunicipalityCore {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Calculates a set of old municipalities that are not part of the current municipality map
+     * or are derived from historical data.
+     *
+     * <p>This method identifies municipalities that either no longer exist in the current
+     * {@code municipalityMap} or are derived from the old municipality model set in the provided map
+     * of old and current municipalities. The resulting set includes converted {@link OldMunicipality} objects.
+     *
+     * <p>The method uses two main data sources:
+     * <ul>
+     *   <li>Entries in the {@code municipalityMap} that are not present in the input map.</li>
+     *   <li>Old municipality models derived from the input map.</li>
+     * </ul>
+     *
+     * @param oldAndCurrentMunicipality a map where the key is a string identifier, and the value is
+     *                                  an {@link OldAndCurrentMunicipality} object representing old
+     *                                  and current municipality data
+     * @return a set of {@link OldMunicipality} objects representing the old municipalities
+     */
     private Set<OldMunicipality> calculateOldMunicipalities(Map<String, OldAndCurrentMunicipality> oldAndCurrentMunicipality) {
-        return Stream.concat(municipalityMap.entrySet().stream()
-                        .filter(currentMunicipalities -> oldAndCurrentMunicipality.get(currentMunicipalities.getKey()) == null)
-                        .map(value -> fromMunicipality(value.getValue())), oldAndCurrentMunicipality.values().stream()
-                        .flatMap(value -> fromOldMunicipalityModel(value.oldMunicipalityModelSet())))
+        return Stream.concat(
+                        municipalityMap.entrySet().stream()
+                                .filter(currentMunicipalities -> oldAndCurrentMunicipality.get(currentMunicipalities.getKey()) == null)
+                                .map(value -> fromMunicipality(value.getValue())),
+                        oldAndCurrentMunicipality.values().stream()
+                                .flatMap(value -> fromOldMunicipalityModel(value.oldMunicipalityModelSet())))
                 .collect(Collectors.toSet());
     }
+
 }

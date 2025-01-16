@@ -1,6 +1,24 @@
 package com.mercant.real.estate.municipality.utils;
 
 public enum Constant {
+    ERROR_MSG_TEMPLATE {
+        @Override
+        public String text() {
+            return "error in the next arg input ";
+        }
+    },
+    API_KEY {
+        @Override
+        public String text() {
+            return "api_key";
+        }
+    },
+    ITALY_REGION {
+        @Override
+        public String text() {
+            return "it";
+        }
+    },
     URL_CURRENT_MUNICIPALITY {
         @Override
         public String text() {

@@ -18,6 +18,11 @@ public enum ConstantSeparator {
         public String separator() {
             return ".";
         }
+    }, EQUALS {
+        @Override
+        public String separator() {
+            return "=";
+        }
     };
 
     public abstract String separator();

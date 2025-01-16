@@ -4,7 +4,7 @@ import com.mercant.real.estate.municipality.builder.ConstructObjectFromFile;
 import com.mercant.real.estate.municipality.configuration.WebClientVerticle;
 import com.mercant.real.estate.municipality.model.MunicipalityModel;
 import com.mercant.real.estate.municipality.model.OldMunicipalityModel;
-import com.mercant.real.estate.municipality.utils.Supplier;
+import com.mercant.real.estate.municipality.utils.functional.Supplier;
 import io.smallrye.mutiny.Uni;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
