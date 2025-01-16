@@ -120,7 +120,8 @@ The main technologies that need to be installed on the computer are:
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
+1. Get a free API Key
+   at [Google cloud platform](https://cloud.google.com/free?utm_source=google&utm_medium=cpc&utm_campaign=emea-none-all-none-dr-sitelink-all-all-trial-e-gcp-1011340&utm_content=text-ad-none-any-DEV_c-CRE_527980088521-ADGP_Hybrid+%7C+BKWS+-+EXA+%7C+Txt+-+GCP+-+General+-+v3-KWID_43700060384861759-kwd-87853815-userloc_1008736&utm_term=KW_gcp-ST_gcp-NET_g-&gad_source=1&gclid=Cj0KCQiA-aK8BhCDARIsAL_-H9kiAxjvQCtYq1L7Plomk4hV4vtFcVF8TuccuA3JeIu8W2Rxa3j1gF8aAsNKEALw_wcB&gclsrc=aw.ds&hl=it)
 2. Clone the repo
    ```sh
    git clone https://github.com/faspeee/omi-predictive.git
@@ -156,7 +157,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [ ] Feature 3
     - [ ] Nested Feature
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and
+See the [open issues](https://github.com/faspeee/omi-predictive/issues) for a full list of proposed features (and
 known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -202,7 +203,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [Real Estate Market Observatory](https://github.com/faspeee/omi-predictive)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
